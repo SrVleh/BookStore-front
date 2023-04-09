@@ -2,11 +2,12 @@
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
 import Books from './components/Books.vue'
+import Home from "./components/Home.vue";
 </script>
 
 <template>
     <Navbar />
-    <Books />
+    <Home />
     <Footer />
 </template>
 

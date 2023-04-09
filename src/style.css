@@ -63,6 +63,7 @@ button {
 
 .page-container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   padding: 2rem 4rem;
