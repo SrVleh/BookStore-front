@@ -2,9 +2,10 @@
     <div class="page-container">
         <div class="books-container" v-for="book in books" :key="book.id">
             <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
+                <img src="../../public/book_icon.svg" alt="" style ="color: white">
                 <div class="book-info">
-                  <h2>{{ book.title }}</h2>
-                  <p>{{ book.author }}</p>
+                  <h2 class="title">{{ book.title }}</h2>
+                  <p class="author">{{ book.author }}</p>
                   <div class="actions">
                     <p class="price">{{ book.price }}€</p>
                     <button class="buy-btn">Buy</button>
@@ -18,7 +19,7 @@
 <style scoped lang="scss">
 .books-container {
   z-index: 1;
-  width: 23rem;
+  width: 18rem;
   height: 14rem;
   border-radius: 8px;
   margin: 0;
@@ -43,6 +44,13 @@
     background-size: cover;
     border-radius: 8px;
 
+   img {
+     position: absolute;
+     width: 1.8rem;
+     height: 1.8rem;
+     top: 1rem;
+     right: 1rem;
+   }
 
     .book-info {
       display: flex;
@@ -55,6 +63,16 @@
       background: rgb(0,0,0);
       background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,.3) 100%);
       text-align: start;
+
+      .title {
+        color: #f1f1f1;
+        font-weight: bolder;
+      }
+
+      .author {
+        color: #f1f1f1;
+        font-weight: normal;
+      }
 
       .actions {
         display: flex;
@@ -97,12 +115,7 @@
 import {ref, onMounted} from 'vue';
 
 const books = ref([])
-const title = ref('')
-const author = ref('')
-const price = ref(0)
-const image_url = ref('')
-const book_id = ref(0)
-const API_URL = "http://localhost:3000/books"
+const API_URL = "http://192.168.1.36:80/books"
 
 onMounted(async() => {
     try {
