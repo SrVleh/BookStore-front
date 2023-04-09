@@ -1,0 +1,89 @@
+<template>
+  <div class="nav">
+      <div class="app-logo-container">
+          <img src="../../public/book-logo.svg" alt="">
+          <h1>BookStore</h1>
+      </div>
+      <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+      </ul>
+  </div>
+</template>
+
+<script>
+export default {
+    name: "Navbar"
+}
+</script>
+
+<style scoped lang="scss">
+.nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 3.2rem;
+  background-color: #101010;
+  padding: .2rem 4rem;
+
+  .app-logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .2rem;
+      height: 100%;
+      list-style-type: none;
+      padding: 0;
+      margin-right: 2rem;
+
+    img {
+      width: 1.4rem;
+      height: 1.4rem;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #FA9F42;
+      font-size: 1.4rem;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  ul {
+    display: flex;
+    gap: .2rem;
+    height: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 5rem;
+      height: 100%;
+      transition: all .2s ease-in-out;
+      border-radius: 12px;
+
+      a {
+        color: white;
+        font-weight: normal;
+        font-size: 1.2rem;
+      }
+    }
+
+    li:hover {
+
+      a {
+        color: #FA9F42;
+      }
+    }
+  }
+}
+
+</style>

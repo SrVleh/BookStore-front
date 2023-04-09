@@ -1,12 +1,16 @@
 <script setup>
+import Navbar from "./components/Navbar.vue";
 import Books from './components/Books.vue'
 </script>
 
 <template>
+    <Navbar />
     <Books />
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+
+
 #app {
     margin: 0;
 }
