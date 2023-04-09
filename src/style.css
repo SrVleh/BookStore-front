@@ -57,7 +57,6 @@ button {
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  padding: 0 4rem;
   text-align: center;
 }
 
@@ -65,7 +64,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 2rem 0;
+  padding: 2rem 4rem;
 }
 
 @media (prefers-color-scheme: light) {
