@@ -1,11 +1,13 @@
 <script setup>
 import Navbar from "./components/Navbar.vue";
+import Footer from "./components/Footer.vue";
 import Books from './components/Books.vue'
 </script>
 
 <template>
     <Navbar />
     <Books />
+    <Footer />
 </template>
 
 <style scoped lang="scss">
