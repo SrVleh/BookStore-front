@@ -27,7 +27,7 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
-  border: 1px solid rgba(250, 159, 66, .3);
+  border: 1px solid rgba(172, 252, 217, 0.3);
 
   .book {
     z-index: 1;
@@ -95,15 +95,15 @@
           padding: 0;
           font-weight: bolder;
           font-size: 1.2rem;
-          color: #FA9F42;
-          transition: all .3s ease-in-out;
-          border: 1px solid #FA9F42;
+          color: #ACFCD9;
+          transition: all .5s ease-in-out;
+          border: 1px solid #ACFCD9;
         }
 
         .buy-btn:hover {
           transform: scale(1.1);
-          color: #FA9F42;
-          filter: drop-shadow(0 0 .5em #FA9F42);
+          color: #ACFCD9;
+          filter: drop-shadow(0 0 .5em #ACFCD9);
         }
       }
     }

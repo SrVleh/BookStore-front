@@ -23,7 +23,7 @@ export default {
     padding: .2rem 4rem;
 
     a {
-      color: #FA9F42;
+      color: #ACFCD9;
       font-weight: bolder;
     }
   }
