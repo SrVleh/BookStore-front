@@ -46,7 +46,7 @@ export default {
       padding: 0;
     }
     h1 {
-      color: #FA9F42;
+      color: #ACFCD9;
       font-size: 1.4rem;
       margin: 0;
       padding: 0;
@@ -67,7 +67,7 @@ export default {
       align-items: center;
       min-width: 5rem;
       height: 100%;
-      transition: all .2s ease-in-out;
+      transition: all .5s ease-in-out;
       border-radius: 12px;
 
       a {
@@ -80,7 +80,7 @@ export default {
     li:hover {
 
       a {
-        color: #FA9F42;
+        color: #ACFCD9;
       }
     }
   }

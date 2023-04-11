@@ -1,17 +1,14 @@
 <template>
     <div class="page-container">
         <div class="hero-section">
-            <div class="info-container">
-                <h1>Bookstore</h1>
-                <p>Made with <b>Vue</b> as front and <b>Ruby on Rails</b> as backend.
-                    The whole point of this app is as simple as practice and learn.
-                    Here you have some lipsum:
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    At consequatur distinctio dolorem eius enim, est harum magnam, maxime molestiae non,
-                    obcaecati odio omnis optio quaerat rem repellat velit. Corporis, soluta?
-                </p>
-            </div>
-            <div class="image-container"></div>
+            <h1>Generated with <b>Vite</b></h1>
+            <p>Made with <b class="vue-text">Vue</b> as front and <b class="ruby-text">Ruby on Rails</b> as backend.
+                The whole point of this app is as simple as practice and learn.
+                Here you have some lipsum:
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                At consequatur distinctio dolorem eius enim, est harum magnam, maxime molestiae non,
+                obcaecati odio omnis optio quaerat rem repellat velit. Corporis, soluta?
+            </p>
         </div>
 
         <button class="action-btn">Go to books list</button>
@@ -25,65 +22,63 @@ export default {
 </script>
 
 <style scoped lang="scss">
+    .page-container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .hero-section {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         align-content: center;
-        width: 100%;
+        width: 75%;
         height: 25rem;
         gap: 2rem;
 
-        .info-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            width: 60%;
-            height: 100%;
-            text-align: left;
-            gap: 1rem;
 
-            h1 {
-                font-size: 5rem;
-                font-weight: bolder;
-                color: #FA9F42;
-            }
-
-            p {
-                font-size: 1.2rem;
-                font-weight: lighter;
-            }
+        h1 {
+            font-size: 5rem;
+            font-weight: bolder;
 
             b {
-                color: #FA9F42;
+                color: #905cf0;
             }
         }
 
-        .image-container {
-            width: 25%;
-            height: auto;
-            background-image: url("../../public/book-logo.svg");
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
+        p {
+            font-size: 1.2rem;
+            font-weight: lighter;
         }
+
+        .vue-text{
+            color: #3bb07f;
+            font-weight: bolder;
+        }
+
+        .ruby-text {
+            color: #ec4038;
+            font-weight: bolder;
+        }
+
     }
 
     .action-btn {
         width: 14rem;
         height: 3.7rem;
-        border: 1px solid #FA9F42;
-        color: #FA9F42;
+        border: 1px solid #ACFCD9;
+        color: #ACFCD9;
         font-size: 1.2rem;
         font-weight: bolder;
         margin-top: 2rem;
-        transition: all .3s ease-in-out;
+        transition: all .5s ease-in-out;
     }
 
     .action-btn:hover {
-        scale: (1.1);
-        background-color: #FA9F42;
-        color: #fff;
+        transform: scale(1.1);
+        background-color: #ACFCD9;
+        color: #1a1a1a;
     }
 
 </style>
