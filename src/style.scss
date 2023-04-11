@@ -81,3 +81,56 @@ button {
     background-color: #f9f9f9;
   }
 }
+
+/* CUSTOM CSS */
+.custom-input {
+  width: 35%;
+  height: 2.5rem;
+  padding: .8rem;
+  background-color: #101010;
+  border: 1px solid rgb(172, 252, 217);
+  border-radius: 8px;
+  color: #cbcbcb;
+  font-weight: bolder;
+  transition: all .5s ease-in-out;
+}
+
+.custom-input::placeholder {
+  font-weight: normal;
+  color: #737373;
+}
+
+.custom-input:focus-visible {
+  transform: scale(1.05);
+  outline: 1px solid rgb(172, 252, 217);
+}
+
+.custom-btn {
+  width: 100%;
+  height: 2.5rem;
+  border: 1px solid rgb(172, 252, 217);
+  color: #ACFCD9;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  margin-top: 2rem;
+  transition: all .5s ease-in-out;
+  padding: .1rem;
+}
+
+.custom-btn:hover {
+  transform: scale(1.1);
+  background-color: #ACFCD9;
+  color: #1a1a1a;
+}
+
+.account-text {
+  a {
+    font-weight: bolder;
+    color: #ACFCD9;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+  }
+  a:hover {
+    color: #00ab5f;
+  }
+}
