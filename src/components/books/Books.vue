@@ -2,7 +2,7 @@
     <div class="page-container">
         <div class="books-container" v-for="book in books" :key="book.id">
             <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
-                <img src="../../public/book-logo.svg" alt="" style ="color: white">
+                <img src="../../../public/book-logo.svg" alt="" style ="color: white">
                 <div class="book-info">
                   <h2 class="title">{{ book.title }}</h2>
                   <p class="author">{{ book.author }}</p>
