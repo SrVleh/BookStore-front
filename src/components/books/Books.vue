@@ -1,6 +1,6 @@
 <template>
     <div class="page-container">
-        <div class="books-container" v-for="book in books" :key="book.id">
+        <div class="book-container" v-for="book in books" :key="book.id">
             <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
                 <img src="../../../public/book-logo.svg" alt="" style ="color: white">
                 <div class="book-info">
@@ -17,7 +17,7 @@
 </template>
 
 <style scoped lang="scss">
-.books-container {
+.book-container {
   z-index: 1;
   width: 18rem;
   height: 14rem;
@@ -28,6 +28,7 @@
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
   border: 1px solid rgba(172, 252, 217, 0.3);
+  transition: all .3s ease-in-out;
 
   .book {
     z-index: 1;
@@ -102,12 +103,18 @@
 
         .buy-btn:hover {
           transform: scale(1.1);
-          color: #ACFCD9;
-          filter: drop-shadow(0 0 .5em #ACFCD9);
+          background-color: #ACFCD9;
+          color: #1a1a1a;
         }
       }
     }
   }
+}
+
+.book-container:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 .2em #ACFCD9);
+  cursor: pointer;
 }
 </style>
 
