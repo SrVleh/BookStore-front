@@ -11,7 +11,7 @@ import NewBook from "./components/books/NewBook.vue";
 
 <template>
     <Navbar />
-    <NewBook />
+    <Books />
     <Footer />
 </template>
 

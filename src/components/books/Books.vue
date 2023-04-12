@@ -115,7 +115,7 @@
 import {ref, onMounted} from 'vue';
 
 const books = ref([])
-const API_URL = "http://192.168.1.36:80/books"
+const API_URL = "http://localhost:3000/books"
 
 onMounted(async() => {
     try {
