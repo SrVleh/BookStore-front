@@ -6,11 +6,12 @@ import Home from "./components/Home.vue";
 import Login from "./components/auth/Login.vue";
 import Signin from "./components/auth/Signin.vue";
 import EditBook from "./components/books/EditBook.vue";
+import NewBook from "./components/books/NewBook.vue";
 </script>
 
 <template>
     <Navbar />
-    <EditBook />
+    <NewBook />
     <Footer />
 </template>
 
