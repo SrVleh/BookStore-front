@@ -20,6 +20,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@media screen and (max-width: 600px) {
+    .nav {
+        display: none;
+
+        ul {
+            visibility: hidden;
+        }
+    }
+}
+
+
 .nav {
   display: flex;
   justify-content: flex-start;

@@ -12,8 +12,6 @@ export default {
 
 <style scoped lang="scss">
   .footer-container {
-    position: absolute;
-    bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,6 +19,7 @@ export default {
     height: 4rem;
     background-color: #101010;
     padding: .2rem 4rem;
+    margin-top: auto;
 
     a {
       color: #ACFCD9;
