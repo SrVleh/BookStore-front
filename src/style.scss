@@ -117,11 +117,25 @@ button {
   padding: .1rem;
 }
 
+.cancel {
+  @extend .custom-btn;
+  color: #EF5B5B;
+  border: 1px solid rgb(239, 91, 91);
+}
+
 .custom-btn:hover {
   transform: scale(1.1);
   background-color: #ACFCD9;
   color: #1a1a1a;
 }
+
+.cancel:hover {
+  transform: scale(1.1);
+  background-color: #EF5B5B;
+  color: #1a1a1a;
+}
+
+
 
 .account-text {
   a {
