@@ -40,16 +40,11 @@
 
 <script setup>
 import {ref, onMounted} from 'vue';
+import BooksController from "../../controllers/BooksController.js";
 
 const books = ref([])
-const API_URL = "http://localhost:3000/books"
 
 onMounted(async() => {
-    try {
-        const res = await fetch(API_URL);
-        books.value = await res.json();
-    } catch(e){
-        books.value = [];
-    }
+    books.value = await BooksController.GetBooksList()
 })
 </script>

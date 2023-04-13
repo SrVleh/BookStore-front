@@ -1,8 +1,8 @@
-import BooksService from '../services/BooksService.js'
+import GetBooksListService from '../services/GetBooksListService.js'
 
 class BooksController {
-    static GetAllBooks() {
-        return BooksService.Call()
+    static GetBooksList() {
+        return GetBooksListService.Call()
     }
 }
 
