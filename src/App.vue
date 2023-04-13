@@ -7,11 +7,12 @@ import Login from "./components/auth/Login.vue";
 import Signin from "./components/auth/Signin.vue";
 import EditBook from "./components/books/EditBook.vue";
 import NewBook from "./components/books/NewBook.vue";
+import Book from "./components/books/Book.vue";
 </script>
 
 <template>
     <Navbar />
-    <Books />
+    <EditBook />
     <Footer />
 </template>
 
