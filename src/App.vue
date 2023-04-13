@@ -12,7 +12,7 @@ import Book from "./components/books/Book.vue";
 
 <template>
     <Navbar />
-    <Books />
+    <router-view></router-view>
     <Footer />
 </template>
 
