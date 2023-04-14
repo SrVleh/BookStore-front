@@ -1,12 +1,12 @@
 <template>
   <div class="page-container">
-      <div class="book" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/5/56/TheNameoftheWind_cover.jpg')">
+      <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
           <img src="../../../public/book-logo.svg" alt="" style ="color: white">
           <div class="book-info">
-              <h2 class="title">Title</h2>
-              <p class="author">Author</p>
+              <h2 class="title">{{ book.title }}</h2>
+              <p class="author">{{ book.author }}</p>
               <div class="actions">
-                  <p class="price">23€</p>
+                  <p class="price">{{ book.price }}€</p>
                   <button class="buy-btn">Buy</button>
               </div>
           </div>
@@ -14,10 +14,22 @@
   </div>
 </template>
 
-<script>
-export default {
-    name: "Book"
-}
+<script setup>
+import {defineProps, ref, onMounted} from "vue";
+import BooksController from "../../controllers/BooksController.js";
+
+const book = ref({})
+
+const props = defineProps({
+    id: {
+        type: Number,
+        required: true,
+    }
+})
+
+onMounted(async() =>{
+    book.value = await BooksController.GetBook(props.id)
+})
 </script>
 
 <style scoped>

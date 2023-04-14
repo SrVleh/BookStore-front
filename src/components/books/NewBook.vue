@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue';
+import {ref} from 'vue';
 
 const title = ref("")
 const author = ref("")

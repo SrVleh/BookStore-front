@@ -1,17 +1,19 @@
 <template>
     <div class="page-container">
+
         <div class="book-container" v-for="book in books" :key="book.id">
-            <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
-                <img src="../../../public/book-logo.svg" alt="" style ="color: white">
-                <div class="book-info">
-                  <h2 class="title">{{ book.title }}</h2>
-                  <p class="author">{{ book.author }}</p>
-                  <div class="actions">
-                    <p class="price">{{ book.price }}€</p>
-                    <button class="buy-btn">Buy</button>
-                  </div>
+            <router-link :to="'/book/' + book.id">
+                <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
+                    <img src="../../../public/book-logo.svg" alt="" style ="color: white">
+                    <div class="book-info">
+                        <h2 class="title">{{ book.title }}</h2>
+                        <p class="author">{{ book.author }}</p>
+                        <div class="actions">
+                            <p class="price">{{ book.price }}€</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </router-link>
         </div>
     </div>
 </template>

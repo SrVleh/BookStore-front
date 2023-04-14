@@ -11,7 +11,8 @@
             </p>
         </div>
 
-        <button class="action-btn">Go to books list</button>
+
+       <router-link class="btn action-btn" to="/books-listing">Go to books list</router-link>
     </div>
 </template>
 
@@ -73,6 +74,7 @@ export default {
         font-weight: bolder;
         margin-top: 2rem;
         transition: all .5s ease-in-out;
+        padding: .9rem;
     }
 
     .action-btn:hover {
