@@ -34,6 +34,8 @@ export default {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        animation-name: Appear;
+        animation-duration: 2.5s;
     }
 
     .hero-section {
@@ -63,6 +65,7 @@ export default {
         .vue-text{
             color: #3bb07f;
             font-weight: bolder;
+
         }
 
         .ruby-text {
