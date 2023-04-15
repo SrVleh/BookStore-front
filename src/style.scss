@@ -249,3 +249,13 @@ button {
     }
   }
 }
+
+@keyframes EnterFromRight {
+  0%   {transform: translate(150%, 0);}
+  100% {transform: translate(0%, 0);}
+}
+
+@keyframes Appear {
+  0%   {opacity: 0}
+  100% {opacity: 1}
+}
