@@ -1,24 +1,47 @@
 <template>
-    <div class="page-container">
-
-        <div class="book-container" v-for="book in books" :key="book.id">
-            <router-link :to="'/book/' + book.id">
-                <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
-                    <img src="../../../public/book-logo.svg" alt="" style ="color: white">
-                    <div class="book-info">
-                        <h2 class="title">{{ book.title }}</h2>
-                        <p class="author">{{ book.author }}</p>
-                        <div class="actions">
-                            <p class="price">{{ book.price }}€</p>
-                        </div>
-                    </div>
-                </div>
-            </router-link>
-        </div>
-    </div>
+  <div class="page-container">
+    <template v-if="books != null">
+      <div class="book-container" v-for="book in books" :key="book.id">
+        <router-link :to="'/book/' + book.id">
+          <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
+            <img src="../../../public/book-logo.svg" alt="" style ="color: white">
+            <div class="book-info">
+              <h2 class="title">{{ book.title }}</h2>
+              <p class="author">{{ book.author }}</p>
+              <div class="actions">
+                  <p class="price">{{ book.price }}€</p>
+              </div>
+            </div>
+          </div>
+          </router-link>
+      </div>
+    </template>
+    <template v-else>
+      <div class="empty-content-element">
+        <p>Oh no! There are no books listed 😢...</p>
+      </div>
+    </template>
+  </div>
 </template>
 
 <style scoped lang="scss">
+
+.page-container {
+
+  .empty-content-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: Appear;
+    animation-duration: 2s;
+
+    p {
+      font-size: 1.8rem;
+      font-weight: bolder;
+    }
+  }
+}
+
 .book-container {
   z-index: 1;
   width: 18rem;
@@ -31,6 +54,8 @@
   -webkit-backdrop-filter: blur(8.5px);
   border: 1px solid rgba(172, 252, 217, 0.3);
   transition: all .3s ease-in-out;
+  animation-name: Appear;
+  animation-duration: 2s;
 }
 
 .book-container:hover {
@@ -38,6 +63,7 @@
   filter: drop-shadow(0 0 .2em #ACFCD9);
   cursor: pointer;
 }
+
 </style>
 
 <script setup>
