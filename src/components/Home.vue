@@ -12,13 +12,20 @@
         </div>
 
 
-       <router-link class="btn action-btn" to="/books-listing">Go to books list</router-link>
+       <router-link class="btn action-btn" :to="Paths.BOOKS_LIST">Go to books list</router-link>
     </div>
 </template>
 
 <script>
+import Paths from "../constants/Paths.js";
+
 export default {
-    name: "Home"
+    name: "Home",
+    computed: {
+        Paths() {
+            return Paths
+        }
+    }
 }
 </script>
 
