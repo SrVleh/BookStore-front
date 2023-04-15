@@ -5,16 +5,22 @@
           <h1>BookStore</h1>
       </div>
       <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/books-listing">Books</router-link></li>
-          <li><router-link to="/add-book">Add Book</router-link></li>
+          <li><router-link :to="Paths.HOME">Home</router-link></li>
+          <li><router-link :to="Paths.BOOKS_LIST">Books</router-link></li>
+          <li><router-link :to="Paths.NEW_BOOK">Add Book</router-link></li>
       </ul>
   </div>
 </template>
 
 <script>
+import Paths from "../constants/Paths.js";
 export default {
-    name: "Navbar"
+    name: "Navbar",
+    computed: {
+        Paths() {
+            return Paths
+        }
+    }
 }
 </script>
 

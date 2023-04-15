@@ -1,13 +1,6 @@
 <script setup>
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
-import Books from './components/books/Books.vue'
-import Home from "./components/Home.vue";
-import Login from "./components/auth/Login.vue";
-import Signin from "./components/auth/Signin.vue";
-import EditBook from "./components/books/EditBook.vue";
-import NewBook from "./components/books/NewBook.vue";
-import Book from "./components/books/Book.vue";
 </script>
 
 <template>

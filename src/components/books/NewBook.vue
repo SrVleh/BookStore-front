@@ -17,6 +17,8 @@
 
 <script setup>
 import {ref} from 'vue';
+import RouterController from "../../controllers/RouterController.js";
+import Paths from "../../constants/Paths.js";
 
 const title = ref("")
 const author = ref("")
@@ -38,6 +40,8 @@ const createBook = async() => {
             image_url: image_url.value,
             synopsis: synopsis.value
         })
+    }).then(() => {
+        RouterController.NavigateTo(Paths.BOOKS_LIST)
     })
 
     title.value = ''
