@@ -9,7 +9,7 @@
             <textarea rows="15" v-model="synopsis" class="custom-area" type="text" placeholder="Synopsis" />
             <div class="actions-container">
                 <button @click="createBook" class="custom-btn">Confirm</button>
-                <button class="custom-btn cancel">Cancel</button>
+                <button @click="navigateToBooksList" class="custom-btn cancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@ const createBook = async() => {
             synopsis: synopsis.value
         })
     }).then(() => {
-        RouterController.NavigateTo(Paths.BOOKS_LIST)
+        navigateToBooksList()
     })
 
     title.value = ''
@@ -49,6 +49,10 @@ const createBook = async() => {
     price.value = 0
     image_url.value = ''
     synopsis.value = ''
+}
+
+const navigateToBooksList = () => {
+    RouterController.NavigateTo(Paths.BOOKS_LIST)
 }
 </script>
 
