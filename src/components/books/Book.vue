@@ -11,6 +11,11 @@
               </div>
           </div>
       </div>
+
+      <div class="synopsis-container" v-if="book.synopsis != null">
+          <h1 class="synopsis-title">Synopsis</h1>
+          <p class="synopsis">{{ book.synopsis }}</p>
+      </div>
   </div>
 </template>
 
@@ -33,8 +38,30 @@ onMounted(async() =>{
 </script>
 
 <style scoped>
+    .page-container {
+        gap: 3rem;
+    }
+
     .book {
         width: 23rem;
         height: 35rem;
+    }
+
+    .synopsis-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        overflow-wrap: break-word;
+        width: 40%;
+        height: 100%;
+
+        .synopsis-title{
+            font-size: 2rem;
+        }
+
+        .synopsis {
+            font-weight: normal;
+            font-size: 1.2rem;
+        }
     }
 </style>
