@@ -79,6 +79,8 @@ button {
   gap: 1rem;
   padding: 2rem 4rem;
   min-height: calc(100vh - 3.2rem - 4rem);
+  animation-name: Appear;
+  animation-duration: 1.5s;
 }
 
 @media (prefers-color-scheme: light) {
