@@ -192,6 +192,16 @@ button {
     right: 1rem;
   }
 
+  .edit-btn {
+    @extend img;
+    padding: 0;
+    top: 4rem;
+    background-image: url("../public/edit-icon.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
   .book-info {
     display: flex;
     flex-direction: column;
