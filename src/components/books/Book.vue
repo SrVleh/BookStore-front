@@ -2,6 +2,7 @@
   <div class="page-container">
       <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
           <img src="../../../public/book-logo.svg" alt="" style ="color: white">
+          <router-link :to="'/edit-book/' + book.id" class="edit-btn"></router-link>
           <div class="book-info">
               <h2 class="title">{{ book.title }}</h2>
               <p class="author">{{ book.author }}</p>
