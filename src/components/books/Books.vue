@@ -4,7 +4,7 @@
       <div class="book-container" v-for="book in books" :key="book.id">
         <router-link :to="'/book/' + book.id">
           <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
-            <img src="../../../public/book-logo.svg" alt="" style ="color: white">
+            <img class="book-icon" src="../../../public/book-logo.svg" alt="" style ="color: white">
             <div class="book-info">
               <h2 class="title">{{ book.title }}</h2>
               <p class="author">{{ book.author }}</p>
