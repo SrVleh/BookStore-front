@@ -8,6 +8,8 @@
           <li><router-link :to="Paths.HOME">Home</router-link></li>
           <li><router-link :to="Paths.BOOKS_LIST">Books</router-link></li>
           <li><router-link :to="Paths.NEW_BOOK">Add Book</router-link></li>
+          <li><router-link :to="Paths.LOG_IN">Log In</router-link></li>
+          <li><router-link :to="Paths.SIGN_UP">Sign up</router-link></li>
       </ul>
   </div>
 </template>
