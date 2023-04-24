@@ -8,6 +8,7 @@ import Signup from "../components/auth/Signup.vue";
 import Paths from "../constants/Paths.js";
 
 import { createRouter, createWebHashHistory } from 'vue-router';
+import ProfilePage from "../components/ProfilePage.vue";
 
 const routes = [
     { path: Paths.HOME, component: Home },
@@ -16,7 +17,8 @@ const routes = [
     { path: Paths.NEW_BOOK, component: NewBook },
     { path: Paths.EDIT_BOOK, component: EditBook, props: true},
     { path: Paths.LOG_IN, component: Login, props: true},
-    { path: Paths.SIGN_UP, component: Signup, props: true}
+    { path: Paths.SIGN_UP, component: Signup, props: true},
+    { path: Paths.PROFILE_PAGE, component: ProfilePage}
 ]
 
 const router = createRouter({
