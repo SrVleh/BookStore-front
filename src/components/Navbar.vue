@@ -20,25 +20,40 @@
             <li>
                 <router-link :to="Paths.SIGN_UP">Sign up</router-link>
             </li>
+            <li>
+                <button @click="logout">Logout</button>
+            </li>
         </ul>
-        <router-link :to="Paths.SIGN_UP">
+        <router-link :to="Paths.PROFILE_PAGE">
             <div class="profile-menu-item"></div>
         </router-link>
 
     </div>
 </template>
 
-<script>
+<script setup>
 import Paths from "../constants/Paths.js";
 
-export default {
-    name: "Navbar",
-    computed: {
-        Paths() {
-            return Paths
-        }
-    }
-}
+const logout = (async() => {
+    fetch("http://localhost:3000/logout", {
+        method: "delete",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+        },
+    })
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                return res.json().then((json) => Promise.reject(json));
+            }
+        })
+        .then((json) => {
+            console.dir(json);
+        })
+        .catch((err) => console.error(err));
+})
 </script>
 
 <style scoped lang="scss">
