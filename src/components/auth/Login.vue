@@ -15,6 +15,7 @@
 
 <script setup>
 import { ref } from "vue";
+import TokenController from "../../controllers/TokenController.js";
 
 const userEmail = ref('')
 const userPass = ref('')
@@ -33,8 +34,7 @@ const login = async () => {
     })
       .then((res) => {
           if (res.ok) {
-              console.log(res.headers.get("Authorization"));
-              localStorage.setItem("token", res.headers.get("Authorization"));
+              TokenController.SetToken(res.headers.get("Authorization"))
               return res.json();
           } else {
               throw new Error(res);

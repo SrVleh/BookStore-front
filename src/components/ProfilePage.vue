@@ -11,13 +11,14 @@
 </template>
 
 <script setup>
-  import {onMounted} from "vue";
+  import { onMounted } from "vue";
+  import TokenController from "../controllers/TokenController.js";
 
   onMounted( async() => {
       fetch("http://localhost:3000/profile_page", {
           headers: {
               "Content-Type": "application/json",
-              Authorization: localStorage.getItem("token"),
+              Authorization: TokenController.GetToken()
           },
       })
           .then((res) => {
