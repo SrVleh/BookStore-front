@@ -2,7 +2,7 @@
     <div class="page-container">
         <div class="login-section">
             <h1>LogIn</h1>
-            <input v-model="userEmail" class="custom-input" type="text" placeholder="Username">
+            <input v-model="userEmail" class="custom-input" type="text" placeholder="Email">
             <input v-model="userPass" class="custom-input" type="password" placeholder="Password">
             <div class="actions-container">
                 <button class="custom-btn" @click="login">Log in</button>
@@ -16,6 +16,8 @@
 <script setup>
 import { ref } from "vue";
 import TokenController from "../../controllers/TokenController.js";
+import RouterController from "../../controllers/RouterController.js";
+import Paths from "../../constants/Paths.js";
 
 const userEmail = ref('')
 const userPass = ref('')
@@ -35,6 +37,7 @@ const login = async () => {
       .then((res) => {
           if (res.ok) {
               TokenController.SetToken(res.headers.get("Authorization"))
+              RouterController.NavigateTo(Paths.PROFILE_PAGE)
               return res.json();
           } else {
               throw new Error(res);

@@ -2,8 +2,9 @@
   <div class="page-container">
       <div class="profile-data-section">
           <div class="user-data">
-            <div class="user-profile-picture" :style="{ backgroundImage: 'url(https://i.redd.it/v0caqchbtn741.jpg)' }"></div>
-            <p class="username">Username</p>
+            <div v-if="profile.data.profile_pic != null" class="user-profile-picture" :style="{ backgroundImage: `url(${profile.data})` }"></div>
+            <div v-else class="user-profile-picture" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
+            <p class="username">{{ profile.data.name }}</p>
             <p class="books-count">234 Books</p>
           </div>
       </div>
@@ -11,8 +12,10 @@
 </template>
 
 <script setup>
-  import { onMounted } from "vue";
+  import { ref, onMounted } from "vue";
   import TokenController from "../controllers/TokenController.js";
+
+  const profile = ref({})
 
   onMounted( async() => {
       fetch("http://localhost:3000/profile_page", {
@@ -28,7 +31,7 @@
                   throw new Error("Unauthorized Request. Must be signed in.");
               }
           })
-          .then((json) => console.dir(json))
+          .then((json) => profile.value = json)
           .catch((err) => console.error(err));
   })
 </script>
