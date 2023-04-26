@@ -29,10 +29,10 @@ const signUp = async () => {
         },
         body: JSON.stringify({
             user: {
-                name: name.value,
-                username: username.value,
                 email: email.value,
                 password: pass.value,
+                name: name.value,
+                username: username.value,
             },
         }),
     })
