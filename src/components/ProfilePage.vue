@@ -1,10 +1,10 @@
 <template>
   <div class="page-container">
       <div class="profile-data-section">
-          <div class="user-data">
-            <div v-if="profile.data.profile_pic != null" class="user-profile-picture" :style="{ backgroundImage: `url(${profile.data})` }"></div>
+          <div class="user-data" v-if="profile">
+            <div v-if="profile.profile_pic != null" class="user-profile-picture" :style="{ backgroundImage: `url(${profile.profile_pic})` }"></div>
             <div v-else class="user-profile-picture" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
-            <p class="username">{{ profile.data.name }}</p>
+            <p class="username"> {{ profile.username }} </p>
             <p class="books-count">234 Books</p>
           </div>
       </div>
@@ -17,22 +17,9 @@
 
   const profile = ref({})
 
-  onMounted( async() => {
-      fetch("http://localhost:3000/profile_page", {
-          headers: {
-              "Content-Type": "application/json",
-              Authorization: TokenController.GetToken()
-          },
-      })
-          .then((res) => {
-              if (res.ok) {
-                  return res.json();
-              } else if (res.status == "401") {
-                  throw new Error("Unauthorized Request. Must be signed in.");
-              }
-          })
-          .then((json) => profile.value = json)
-          .catch((err) => console.error(err));
+  onMounted( () => {
+     profile.value = JSON.parse(localStorage.getItem("userData"))
+     console.log(profile.value.name)
   })
 </script>
 

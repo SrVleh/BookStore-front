@@ -24,7 +24,7 @@
 <script setup>
 import {defineProps, ref, onMounted} from "vue";
 import BooksController from "../../controllers/BooksController.js";
-import DeleteBookService from "../../services/DeleteBookService.js";
+import DeleteBookService from "../../services/books/DeleteBookService.js";
 import NavigateService from "../../services/NavigateService.js";
 import Paths from "../../constants/Paths.js";
 
