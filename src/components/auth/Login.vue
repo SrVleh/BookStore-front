@@ -18,6 +18,7 @@ import { ref } from "vue";
 import TokenController from "../../controllers/TokenController.js";
 import RouterController from "../../controllers/RouterController.js";
 import Paths from "../../constants/Paths.js";
+import UserDataController from "../../controllers/UserDataController.js";
 
 const userEmail = ref('')
 const userPass = ref('')
@@ -37,13 +38,13 @@ const login = async () => {
       .then((res) => {
           if (res.ok) {
               TokenController.SetToken(res.headers.get("Authorization"))
-              RouterController.NavigateTo(Paths.PROFILE_PAGE)
               return res.json();
           } else {
               throw new Error(res);
           }
       })
-      .then((json) => console.dir(json))
+      .then((json) => UserDataController.StoreUserData(json.data))
+      .then(() => RouterController.NavigateTo(Paths.PROFILE_PAGE))
       .catch((err) => console.error(err));
 }
 </script>

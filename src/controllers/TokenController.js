@@ -1,5 +1,5 @@
-import GetTokenService from "../services/GetTokenService.js";
-import SetTokenService from "../services/SetTokenService.js";
+import GetTokenService from "../services/token/GetTokenService.js";
+import SetTokenService from "../services/token/SetTokenService.js";
 
 class TokenController {
     static GetToken() {

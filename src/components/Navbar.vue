@@ -20,12 +20,13 @@
             <li>
                 <router-link :to="Paths.SIGN_UP">Sign up</router-link>
             </li>
-            <li>
+            <li v-if="TokenController.GetToken()">
                 <button @click="logout">Logout</button>
             </li>
         </ul>
-        <router-link :to="Paths.PROFILE_PAGE">
-            <div class="profile-menu-item"></div>
+        <router-link :to="Paths.PROFILE_PAGE" v-if="TokenController.GetToken()">
+            <div v-if="profile" class="profile-menu-item" :style="{ backgroundImage: `url(${ profile.profile_pic })` }"></div>
+            <div v-else class="profile-menu-item" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
         </router-link>
 
     </div>
@@ -33,6 +34,10 @@
 
 <script setup>
 import Paths from "../constants/Paths.js";
+import TokenController from "../controllers/TokenController.js";
+import {ref, onMounted} from "vue";
+
+const profile = ref('')
 
 const logout = (async() => {
     fetch("http://localhost:3000/logout", {
@@ -50,9 +55,14 @@ const logout = (async() => {
             }
         })
         .then((json) => {
+            localStorage.clear()
             console.dir(json);
         })
         .catch((err) => console.error(err));
+})
+
+onMounted(() => {
+    profile.value = JSON.parse(localStorage.getItem("userData"))
 })
 </script>
 
@@ -140,7 +150,9 @@ const logout = (async() => {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rebeccapurple;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     transition: all .3s ease-in-out;
   }
 

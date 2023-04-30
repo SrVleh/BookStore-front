@@ -1,6 +1,6 @@
-import GetBooksListService from '../services/GetBooksListService.js'
-import GetBookByIdService from "../services/GetBookByIdService.js";
-import UpdateBookService from "../services/UpdateBookService.js";
+import GetBooksListService from '../services/books/GetBooksListService.js'
+import GetBookByIdService from "../services/books/GetBookByIdService.js";
+import UpdateBookService from "../services/books/UpdateBookService.js";
 
 class BooksController {
     static GetBooksList() {
