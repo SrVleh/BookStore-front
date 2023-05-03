@@ -8,19 +8,26 @@
             <p class="books-count">234 Books</p>
           </div>
       </div>
+      <button @click="datachange">data change</button>
   </div>
 </template>
 
 <script setup>
   import { ref, onMounted } from "vue";
-  import TokenController from "../controllers/TokenController.js";
+  import { store } from "../state/index.js";
 
   const profile = ref({})
 
   onMounted( () => {
      profile.value = JSON.parse(localStorage.getItem("userData"))
+     store.commit('storeUserData', profile.value)
      console.log(profile.value.name)
   })
+
+  const datachange = () => {
+      store.commit('storeUserData', profile.value)
+      console.log(store.state.userData)
+  }
 </script>
 
 <style scoped>

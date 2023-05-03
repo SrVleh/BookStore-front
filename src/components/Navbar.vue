@@ -24,8 +24,8 @@
                 <button @click="logout">Logout</button>
             </li>
         </ul>
-        <router-link :to="Paths.PROFILE_PAGE" v-if="TokenController.GetToken()">
-            <div v-if="profile" class="profile-menu-item" :style="{ backgroundImage: `url(${ profile.profile_pic })` }"></div>
+        <router-link :to="Paths.PROFILE_PAGE" v-if="store.state.isLoggedIn">
+            <div v-if="store.state.userData.profile_pic" class="profile-menu-item" :style="{ backgroundImage: `url(${ store.state.userData.profile_pic })` }"></div>
             <div v-else class="profile-menu-item" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
         </router-link>
 
@@ -36,6 +36,9 @@
 import Paths from "../constants/Paths.js";
 import TokenController from "../controllers/TokenController.js";
 import {ref, onMounted} from "vue";
+import { store } from "../state/index.js";
+
+console.log(store.state.userData)
 
 const profile = ref('')
 
