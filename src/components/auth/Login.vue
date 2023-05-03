@@ -19,9 +19,11 @@ import TokenController from "../../controllers/TokenController.js";
 import RouterController from "../../controllers/RouterController.js";
 import Paths from "../../constants/Paths.js";
 import UserDataController from "../../controllers/UserDataController.js";
+import { store } from "../../state/index.js";
 
 const userEmail = ref('')
 const userPass = ref('')
+
 const login = async () => {
     fetch("http://localhost:3000/login", {
         method: "post",
@@ -44,6 +46,7 @@ const login = async () => {
           }
       })
       .then((json) => UserDataController.StoreUserData(json.data))
+      .then(() => store.commit('changeLoggedState', true))
       .then(() => RouterController.NavigateTo(Paths.PROFILE_PAGE))
       .catch((err) => console.error(err));
 }
