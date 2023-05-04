@@ -1,7 +1,8 @@
+import LoginService from "../services/auth/LoginService.js";
 
 class AuthController {
-    static Login() {
-        return LoginService.Call()
+    static Login(userData) {
+        return LoginService.Call(userData)
     }
 
     static Logout() {
