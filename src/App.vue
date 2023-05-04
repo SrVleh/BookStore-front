@@ -1,7 +1,3 @@
-<script setup>
-import Navbar from "./components/Navbar.vue";
-import Footer from "./components/Footer.vue";
-</script>
 
 <template>
     <Navbar />
@@ -9,9 +5,19 @@ import Footer from "./components/Footer.vue";
     <Footer />
 </template>
 
+<script setup>
+import Navbar from "./components/Navbar.vue";
+import Footer from "./components/Footer.vue";
+import router from "./routes/router.js";
+import UserDataController from "./controllers/UserDataController.js";
+
+router.beforeResolve(() => {
+    UserDataController.ReloadData()
+})
+
+</script>
+
 <style scoped lang="scss">
-
-
 #app {
     margin: 0;
 }

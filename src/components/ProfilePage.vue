@@ -1,10 +1,10 @@
 <template>
   <div class="page-container">
       <div class="profile-data-section">
-          <div class="user-data" v-if="profile">
-            <div v-if="profile.profile_pic != null" class="user-profile-picture" :style="{ backgroundImage: `url(${profile.profile_pic})` }"></div>
+          <div class="user-data" v-if="store.state.userData">
+            <div v-if="store.state.userData.profile_pic != null" class="user-profile-picture" :style="{ backgroundImage: `url(${store.state.userData.profile_pic})` }"></div>
             <div v-else class="user-profile-picture" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
-            <p class="username"> {{ profile.username }} </p>
+            <p class="username"> {{ store.state.userData.username }} </p>
             <p class="books-count">234 Books</p>
           </div>
       </div>
@@ -17,11 +17,6 @@
   import { store } from "../state/index.js";
 
   const profile = ref({})
-
-  onMounted( () => {
-     profile.value = JSON.parse(localStorage.getItem("userData"))
-     store.commit('storeUserData', profile.value)
-  })
 
   const datachange = () => {
       store.commit('storeUserData', profile.value)
