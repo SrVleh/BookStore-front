@@ -25,7 +25,7 @@
             </li>
         </ul>
         <router-link :to="Paths.PROFILE_PAGE" v-if="store.state.isLoggedIn">
-            <div v-if="store.state.userData.profile_pic" class="profile-menu-item" :style="{ backgroundImage: `url(${ store.state.userData.profile_pic })` }"></div>
+            <div v-if="store.state.userData.profile_pic != null" class="profile-menu-item" :style="{ backgroundImage: `url(${ store.state.userData.profile_pic })` }"></div>
             <div v-else class="profile-menu-item" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
         </router-link>
 
@@ -35,38 +35,15 @@
 <script setup>
 import Paths from "../constants/Paths.js";
 import TokenController from "../controllers/TokenController.js";
-import {ref, onMounted} from "vue";
 import { store } from "../state/index.js";
+import AuthController from "../controllers/AuthController.js";
 
-console.log(store.state.userData)
+console.log(store.state.userData.value)
+console.log(store.state.isLoggedIn)
 
-const profile = ref('')
-
-const logout = (async() => {
-    fetch("http://localhost:3000/logout", {
-        method: "delete",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: localStorage.getItem("token"),
-        },
-    })
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            } else {
-                return res.json().then((json) => Promise.reject(json));
-            }
-        })
-        .then((json) => {
-            localStorage.clear()
-            console.dir(json);
-        })
-        .catch((err) => console.error(err));
-})
-
-onMounted(() => {
-    profile.value = JSON.parse(localStorage.getItem("userData"))
-})
+const logout = () => {
+    AuthController.Logout()
+}
 </script>
 
 <style scoped lang="scss">
