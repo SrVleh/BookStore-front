@@ -21,12 +21,10 @@
   onMounted( () => {
      profile.value = JSON.parse(localStorage.getItem("userData"))
      store.commit('storeUserData', profile.value)
-     console.log(profile.value.name)
   })
 
   const datachange = () => {
       store.commit('storeUserData', profile.value)
-      console.log(store.state.userData)
   }
 </script>
 
