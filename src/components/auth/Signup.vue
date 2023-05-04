@@ -1,11 +1,11 @@
 <template>
   <div class="page-container">
       <div class="signin-section">
-          <h1>SignIn</h1>
-          <input v-model="name" class="custom-input" type="text" placeholder="Name">
-          <input v-model="username" class="custom-input" type="text" placeholder="Username">
-          <input v-model="email" class="custom-input" type="email" placeholder="Email">
-          <input v-model="pass" class="custom-input" type="password" placeholder="Password">
+          <h1>Sign up</h1>
+          <input v-model="userData.name" class="custom-input" type="text" placeholder="Name">
+          <input v-model="userData.username" class="custom-input" type="text" placeholder="Username">
+          <input v-model="userData.email" class="custom-input" type="email" placeholder="Email">
+          <input v-model="userData.pass" class="custom-input" type="password" placeholder="Password">
           <button class="custom-btn" @click="signUp">Sign in</button>
           <p class="account-text">Already have an account? <a href="#">Log in!</a></p>
       </div>
@@ -14,38 +14,17 @@
 
 <script setup>
 import { ref } from "vue";
-import RouterController from "../../controllers/RouterController.js";
-import Paths from "../../constants/Paths.js";
+import AuthController from "../../controllers/AuthController.js";
 
-const name = ref('')
-const username = ref('')
-const email = ref('')
-const pass = ref('')
-const signUp = async () => {
-    fetch("http://localhost:3000/signup", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            user: {
-                email: email.value,
-                password: pass.value,
-                name: name.value,
-                username: username.value,
-            },
-        }),
-    })
-      .then((res) => {
-          if (res.ok) {
-              RouterController.NavigateTo(Paths.LOG_IN)
-              return res.json();
-          } else {
-              throw new Error(res);
-          }
-      })
-      .then((json) => console.log(json))
-      .catch((err) => console.error(err));
+const userData = ref({
+    email: '',
+    pass: '',
+    name: '',
+    username: ''
+})
+
+const signUp = () => {
+    AuthController.SignUp(userData)
 }
 </script>
 
