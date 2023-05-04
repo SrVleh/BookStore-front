@@ -1,5 +1,6 @@
 import LoginService from "../services/auth/LoginService.js";
-
+// import LogoutService
+import SignupService from "../services/auth/SignupService.js";
 class AuthController {
     static Login(userData) {
         return LoginService.Call(userData)
@@ -9,8 +10,8 @@ class AuthController {
         return LogoutService.Call()
     }
 
-    static SignUp() {
-        return SignupService.Call()
+    static SignUp(userData) {
+        return SignupService.Call(userData)
     }
 }
 
