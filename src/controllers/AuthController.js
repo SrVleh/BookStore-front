@@ -1,5 +1,5 @@
 import LoginService from "../services/auth/LoginService.js";
-// import LogoutService
+import LogoutService from "../services/auth/LogoutService.js";
 import SignupService from "../services/auth/SignupService.js";
 class AuthController {
     static Login(userData) {
