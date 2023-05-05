@@ -8,19 +8,11 @@
             <p class="books-count">234 Books</p>
           </div>
       </div>
-      <button @click="datachange">data change</button>
   </div>
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
   import { store } from "../state/index.js";
-
-  const profile = ref({})
-
-  const datachange = () => {
-      store.commit('storeUserData', profile.value)
-  }
 </script>
 
 <style scoped>
