@@ -37,9 +37,12 @@ import Paths from "../constants/Paths.js";
 import TokenController from "../controllers/TokenController.js";
 import { store } from "../state/index.js";
 import AuthController from "../controllers/AuthController.js";
+import UserDataController from "../controllers/UserDataController.js";
 
-console.log(store.state.userData.value)
+UserDataController.ReloadData()
+
 console.log(store.state.isLoggedIn)
+console.log(typeof(store.state.userData))
 
 const logout = () => {
     AuthController.Logout()

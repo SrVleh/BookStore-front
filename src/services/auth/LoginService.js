@@ -26,7 +26,8 @@ class LoginService {
                 }
             })
             .then((json) => UserDataController.StoreUserData(json.data))
-            .then(() => store.commit('changeLoggedState', true))
+            .then(() => localStorage.setItem('isLoggedIn', true))
+            .then(() => UserDataController.ReloadData())
             .then(() => RouterController.NavigateTo(Paths.PROFILE_PAGE))
             .catch((err) => console.error(err));
     }
