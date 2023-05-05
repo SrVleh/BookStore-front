@@ -6,7 +6,8 @@ const Paths = {
     EDIT_BOOK: '/edit-book/:id',
     LOG_IN: '/login/',
     SIGN_UP: '/signup/',
-    PROFILE_PAGE: '/profile_page'
+    PROFILE_PAGE: '/profile_page',
+    EDIT_PROFILE_PIC: '/edit_profile_pic'
 }
 
 export default Paths

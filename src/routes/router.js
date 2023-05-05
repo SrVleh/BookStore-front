@@ -5,10 +5,12 @@ import NewBook from "../components/books/NewBook.vue";
 import EditBook from "../components/books/EditBook.vue"
 import Login from "../components/auth/Login.vue";
 import Signup from "../components/auth/Signup.vue";
-import Paths from "../constants/Paths.js";
+import ProfilePage from "../components/user/ProfilePage.vue";
+import EditProfilePic from "../components/user/EditProfilePic.vue";
 
+import Paths from "../constants/Paths.js";
 import { createRouter, createWebHashHistory } from 'vue-router';
-import ProfilePage from "../components/ProfilePage.vue";
+
 
 const routes = [
     { path: Paths.HOME, component: Home },
@@ -18,7 +20,8 @@ const routes = [
     { path: Paths.EDIT_BOOK, component: EditBook, props: true},
     { path: Paths.LOG_IN, component: Login, props: true},
     { path: Paths.SIGN_UP, component: Signup, props: true},
-    { path: Paths.PROFILE_PAGE, component: ProfilePage}
+    { path: Paths.PROFILE_PAGE, component: ProfilePage },
+    { path: Paths.EDIT_PROFILE_PIC, component: EditProfilePic }
 ]
 
 const router = createRouter({
