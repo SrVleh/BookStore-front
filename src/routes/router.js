@@ -13,15 +13,15 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 
 
 const routes = [
-    { path: Paths.HOME, component: Home },
-    { path: Paths.BOOKS_LIST, component: Books },
-    { path: Paths.SHOW_BOOK, component: Book, props: true },
-    { path: Paths.NEW_BOOK, component: NewBook },
-    { path: Paths.EDIT_BOOK, component: EditBook, props: true},
+    { path: Paths.HOME, component: Home},
+    { path: Paths.BOOKS_LIST, component: Books, meta: { requiresAuth: true } },
+    { path: Paths.SHOW_BOOK, component: Book, props: true, meta: { requiresAuth: true } },
+    { path: Paths.NEW_BOOK, component: NewBook, meta: { requiresAuth: true } },
+    { path: Paths.EDIT_BOOK, component: EditBook, props: true, meta: { requiresAuth: true }},
     { path: Paths.LOG_IN, component: Login, props: true},
     { path: Paths.SIGN_UP, component: Signup, props: true},
-    { path: Paths.PROFILE_PAGE, component: ProfilePage },
-    { path: Paths.EDIT_PROFILE_PIC, component: EditProfilePic }
+    { path: Paths.PROFILE_PAGE, component: ProfilePage, meta: { requiresAuth: true } },
+    { path: Paths.EDIT_PROFILE_PIC, component: EditProfilePic, meta: { requiresAuth: true } }
 ]
 
 const router = createRouter({
