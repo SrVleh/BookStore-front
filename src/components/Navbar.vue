@@ -8,19 +8,19 @@
             <li>
                 <router-link :to="Paths.HOME">Home</router-link>
             </li>
-            <li>
+            <li v-if="store.state.isLoggedIn">
                 <router-link :to="Paths.BOOKS_LIST">Books</router-link>
             </li>
-            <li>
+            <li v-if="store.state.userData.isAdmin && store.state.isLoggedIn">
                 <router-link :to="Paths.NEW_BOOK">Add Book</router-link>
             </li>
-            <li>
+            <li v-if="!store.state.isLoggedIn">
                 <router-link :to="Paths.LOG_IN">Log In</router-link>
             </li>
-            <li>
+            <li v-if="!store.state.isLoggedIn">
                 <router-link :to="Paths.SIGN_UP">Sign up</router-link>
             </li>
-            <li v-if="TokenController.GetToken()">
+            <li v-if="store.state.isLoggedIn">
                 <button @click="logout">Logout</button>
             </li>
         </ul>
@@ -34,15 +34,9 @@
 
 <script setup>
 import Paths from "../constants/Paths.js";
-import TokenController from "../controllers/TokenController.js";
 import { store } from "../state/index.js";
 import AuthController from "../controllers/AuthController.js";
-import UserDataController from "../controllers/UserDataController.js";
 
-UserDataController.ReloadData()
-
-console.log(store.state.isLoggedIn)
-console.log(typeof(store.state.userData))
 
 const logout = () => {
     AuthController.Logout()
@@ -119,12 +113,21 @@ const logout = () => {
         font-weight: normal;
         font-size: 1.2rem;
       }
+
+      button {
+        color: white;
+        font-weight: normal;
+        font-size: 1.2rem;
+      }
     }
 
     li:hover {
-
       a {
         color: #ACFCD9;
+      }
+
+      button {
+        color: #EF5B5B;
       }
     }
   }

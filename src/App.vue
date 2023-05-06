@@ -10,9 +10,21 @@ import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
 import router from "./routes/router.js";
 import UserDataController from "./controllers/UserDataController.js";
+import {store} from "./state/index.js";
+import RouterController from "./controllers/RouterController.js";
+import Paths from "./constants/Paths.js";
 
-router.beforeResolve(() => {
+router.beforeResolve((to, from, next) => {
     UserDataController.ReloadData()
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!store.state.isLoggedIn) {
+            next(Paths.LOG_IN)
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
 })
 
 </script>
