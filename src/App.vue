@@ -12,29 +12,16 @@ import router from "./routes/router.js";
 import UserDataController from "./controllers/UserDataController.js";
 import {store} from "./state/index.js";
 import Paths from "./constants/Paths.js";
+import TokenController from "./controllers/TokenController.js";
+import RouterController from "./controllers/RouterController.js";
+
+if (TokenController.GetToken()) {
+    console.log(TokenController.GetToken())
+}
 
 router.beforeResolve((to, from, next) => {
     UserDataController.ReloadData()
-
-
-    // TODO: Requires refactor
-    if (to.matched.some(record => !record.meta.requiresAdmin)){
-        if (to.matched.some(record => record.meta.requiresAuth)) {
-            if (!store.state.isLoggedIn) { next(Paths.LOG_IN) }
-            else { next() }
-        } else {
-            next()
-        }
-    }else {
-        if (!store.state.userData.isAdmin) {
-            next(from.path)
-        }
-        else{
-            next()
-        }
-    }
-
-
+    RouterController.Redirect(to, from, next)
 })
 
 </script>
