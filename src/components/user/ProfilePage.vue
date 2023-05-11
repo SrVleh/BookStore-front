@@ -12,8 +12,8 @@
           <div class="orders-section" >
               <div class="order" v-for="order in orders" :key="order.id">
                   <p class="order-details">ID: {{ order.id }}</p>
-                  <p class="order-details">Books count: 12</p>
-                  <p class="order-details">Price: 354$</p>
+                  <p class="order-details">Books count: {{ order.books_count }}</p>
+                  <p class="order-details">Price: {{ order.total_price }}€</p>
               </div>
           </div>
       </div>
@@ -26,7 +26,6 @@
   import TokenController from "../../controllers/TokenController.js";
 
   const orders = ref({})
-  const orderedBooks = ref({})
 
   onMounted(async() => {
       const res = await fetch("http://localhost:3000/orders", {
