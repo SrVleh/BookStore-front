@@ -7,6 +7,7 @@ import Login from "../components/auth/Login.vue";
 import Signup from "../components/auth/Signup.vue";
 import ProfilePage from "../components/user/ProfilePage.vue";
 import EditProfilePic from "../components/user/EditProfilePic.vue";
+import Cart from "../components/Cart.vue";
 
 import Paths from "../constants/Paths.js";
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -21,7 +22,8 @@ const routes = [
     { path: Paths.LOG_IN, component: Login, props: true},
     { path: Paths.SIGN_UP, component: Signup, props: true},
     { path: Paths.PROFILE_PAGE, component: ProfilePage, meta: { requiresAuth: true } },
-    { path: Paths.EDIT_PROFILE_PIC, component: EditProfilePic, meta: { requiresAuth: true } }
+    { path: Paths.EDIT_PROFILE_PIC, component: EditProfilePic, meta: { requiresAuth: true } },
+    { path: Paths.CART, component: Cart, meta: { requiresAuth: true } }
 ]
 
 const router = createRouter({
