@@ -9,7 +9,7 @@
             <p class="books-count">234 Books</p>
           </div>
 
-          <div class="orders-section" >
+          <div class="orders-section" v-if="orders">
               <div class="order" v-for="order in orders" :key="order.id">
                   <p class="order-details">ID: {{ order.id }}</p>
                   <p class="order-details">Books count: {{ order.books_count }}</p>
