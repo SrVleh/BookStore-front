@@ -9,7 +9,7 @@
               <p class="author">{{ book.author }}</p>
               <div class="actions">
                   <p class="price">{{ book.price }}€</p>
-                  <button class="buy-btn">Buy</button>
+                  <button class="buy-btn" @click="startShopping"></button>
               </div>
           </div>
       </div>
@@ -28,8 +28,14 @@ import DeleteBookService from "../../services/books/DeleteBookService.js";
 import NavigateService from "../../services/NavigateService.js";
 import Paths from "../../constants/Paths.js";
 import { store } from "../../state/index.js";
+import TokenController from "../../controllers/TokenController.js";
+import OrdersController from "../../controllers/OrdersController.js";
+const DEFAULT_ORDER = 0;
 
 const book = ref({})
+const orders = ref({})
+const lastOrder = ref({})
+const orderedBooks = ref({})
 let response = null;
 
 const props = defineProps({
@@ -53,6 +59,33 @@ const deleteBook = async() => {
 const navigateToBooks = () => {
     NavigateService.Call(Paths.BOOKS_LIST)
 }
+
+const startShopping = async() => {
+    console.log("Shop")
+    orderedBooks.value = await OrdersController.GetOrderedBooks()
+    console.log(orderedBooks.value)
+}
+
+const getOnGoingOrders = async() => {
+    const res = await fetch("http://localhost:3000/orders", {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: TokenController.GetToken()
+        }
+    })
+
+    orders.value = await res.json();
+}
+
+const createNewOrder = () => {
+    OrdersController.CreateNewOrder()
+}
+
+const checkCurrentOrder = () => {
+    lastOrder.value = orders.value[orders.value.length -1]
+    console.log(lastOrder.value)
+}
+
 </script>
 
 <style scoped>
