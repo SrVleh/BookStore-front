@@ -24,11 +24,11 @@
                 <button @click="logout">Logout</button>
             </li>
         </ul>
-        <div class="user-section">
+        <div class="user-section" v-if="store.state.isLoggedIn">
             <router-link :to="Paths.CART" class="cart">
             </router-link>
 
-            <router-link :to="Paths.PROFILE_PAGE" v-if="store.state.isLoggedIn">
+            <router-link :to="Paths.PROFILE_PAGE">
                 <div v-if="store.state.userData.profile_pic != null" class="profile-menu-item" :style="{ backgroundImage: `url(${ store.state.userData.profile_pic })` }"></div>
                 <div v-else class="profile-menu-item" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
             </router-link>

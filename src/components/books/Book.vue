@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-      <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
+      <div class="book purchase" :style="{ backgroundImage: `url(${ book.image_url })`}">
           <img class="book-icon" src="../../../public/book-logo.svg" alt="" style ="color: white">
           <router-link v-if="store.state.userData.isAdmin" :to="'/edit-book/' + book.id" class="edit-btn hov-icon"></router-link>
           <button v-if="store.state.userData.isAdmin" class="delete-btn hov-icon" @click="deleteBook"></button>
@@ -9,10 +9,12 @@
               <p class="author">{{ book.author }}</p>
               <div class="actions">
                   <p class="price">{{ book.price }}€</p>
-                  <button class="buy-btn" @click="startShopping"></button>
+                  <button class="buy-btn" @click="preparePurchase"></button>
               </div>
           </div>
       </div>
+
+
 
       <div class="synopsis-container" v-if="book.synopsis != null">
           <h1 class="synopsis-title">Synopsis</h1>
@@ -28,14 +30,10 @@ import DeleteBookService from "../../services/books/DeleteBookService.js";
 import NavigateService from "../../services/NavigateService.js";
 import Paths from "../../constants/Paths.js";
 import { store } from "../../state/index.js";
-import TokenController from "../../controllers/TokenController.js";
 import OrdersController from "../../controllers/OrdersController.js";
 const DEFAULT_ORDER = 0;
 
 const book = ref({})
-const orders = ref({})
-const lastOrder = ref({})
-const orderedBooks = ref({})
 let response = null;
 
 const props = defineProps({
@@ -60,30 +58,25 @@ const navigateToBooks = () => {
     NavigateService.Call(Paths.BOOKS_LIST)
 }
 
-const startShopping = async() => {
-    console.log("Shop")
-    orderedBooks.value = await OrdersController.GetOrderedBooks()
-    console.log(orderedBooks.value)
+const purchase = async() => {
+    console.log(OrdersController.CheckOngoingOrder())
+    if (OrdersController.CheckOngoingOrder()) {
+        console.log("Proceed with purchase")
+    }
+    else {
+        console.log("Create new order since there is no ongoing order")
+        OrdersController.CreateNewOrder()
+        OrdersController.CheckOngoingOrder()
+        OrdersController.AddBooksToOrder()
+    }
+    // Check for current order V
+    // If there's not a current order create one
+    // Add this book to current order and create a list
+    // Get how many copies of same book
 }
 
-const getOnGoingOrders = async() => {
-    const res = await fetch("http://localhost:3000/orders", {
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: TokenController.GetToken()
-        }
-    })
-
-    orders.value = await res.json();
-}
-
-const createNewOrder = () => {
-    OrdersController.CreateNewOrder()
-}
-
-const checkCurrentOrder = () => {
-    lastOrder.value = orders.value[orders.value.length -1]
-    console.log(lastOrder.value)
+const preparePurchase = () => {
+    console.log("Preparing...")
 }
 
 </script>
