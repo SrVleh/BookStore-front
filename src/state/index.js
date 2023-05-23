@@ -5,7 +5,7 @@ export const store = createStore({
     state: {
         userData: {},
         isLoggedIn: false,
-        currentOrder: 0
+        isOngoingOrder: false
     },
     mutations: {
         storeUserData(state, newData){
@@ -14,8 +14,8 @@ export const store = createStore({
         changeLoggedState(state, isLoggedIn) {
             state.isLoggedIn = isLoggedIn
         },
-        changeCurrentOrder(state, currentOrder) {
-            state.currentOrder = currentOrder
+        isOngoingOrderState(state, currentOrder) {
+            state.isOngoingOrder = currentOrder
         }
     }
 })

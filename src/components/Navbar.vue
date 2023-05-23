@@ -27,8 +27,10 @@
                 <button @click="logout">Logout</button>
             </li>
         </ul>
+
         <div class="user-section" v-if="store.state.isLoggedIn">
             <router-link :to="Paths.CART" class="cart">
+                <div v-if="store.state.isOngoingOrder" class="product-notification"></div>
             </router-link>
 
             <router-link :to="Paths.PROFILE_PAGE">
@@ -169,6 +171,17 @@ const logout = () => {
             background-image: url("../../public/cart_icon.svg");
             cursor: pointer;
             transition: all .3s ease-in-out;
+
+            .product-notification {
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: red;
+            }
         }
         .cart:hover {
             transform: scale(1.05);

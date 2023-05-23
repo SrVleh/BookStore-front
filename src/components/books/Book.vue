@@ -46,7 +46,6 @@ const props = defineProps({
 onMounted(async() =>{
     book.value = await BooksController.GetBook(props.id)
     ongoing_order.value = await OrdersController.CheckOngoingOrder()
-    console.log(ongoing_order.value)
 })
 
 const deleteBook = async() => {

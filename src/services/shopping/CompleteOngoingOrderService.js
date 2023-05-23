@@ -13,14 +13,15 @@ class CompleteOngoingOrderService {
                 order_completed: true
             }
         })
-            .then((res) => {
-                if (res.ok) {
-                    console.log("Status: " + res.ok)
-                    return res.json()
-                } else {
-                    throw new Error(res);
-                }
-            })
+        .then((res) => {
+            if (res.ok) {
+                console.log("Status: " + res.ok)
+                store.commit('isOngoingOrderState', false)
+                return res.json()
+            } else {
+                throw new Error(res);
+            }
+        })
     }
 }
 
