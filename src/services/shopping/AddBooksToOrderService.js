@@ -4,7 +4,7 @@ import Paths from "../../constants/Paths.js";
 import {store} from "../../state/index.js";
 
 class AddBooksToOrderService {
-    static Call(book, quantity) {
+    static Call(ongoing_order, book, quantity) {
         fetch("http://localhost:3000/ordered_books/", {
             method: 'POST',
             headers: {
@@ -12,9 +12,11 @@ class AddBooksToOrderService {
                 Authorization: TokenController.GetToken()
             },
             body: JSON.stringify({
-                order_id: store.state.currentOrder,
-                book_id: book,
-                quantity: quantity,
+                ordered_book: {
+                    order_id: ongoing_order[0].id,
+                    book_id: parseInt(book.id),
+                    quantity: quantity,
+                }
             })
         }).then(r => RouterController.NavigateTo(Paths.BOOKS_LIST))
     }

@@ -9,12 +9,10 @@
               <p class="author">{{ book.author }}</p>
               <div class="actions">
                   <p class="price">{{ book.price }}€</p>
-                  <button class="buy-btn" @click="preparePurchase"></button>
+                  <button class="buy-btn" @click="purchase()"></button>
               </div>
           </div>
       </div>
-
-
 
       <div class="synopsis-container" v-if="book.synopsis != null">
           <h1 class="synopsis-title">Synopsis</h1>
@@ -31,9 +29,11 @@ import NavigateService from "../../services/NavigateService.js";
 import Paths from "../../constants/Paths.js";
 import { store } from "../../state/index.js";
 import OrdersController from "../../controllers/OrdersController.js";
-const DEFAULT_ORDER = 0;
+
+const DEFAULT_QUANTITY = 1
 
 const book = ref({})
+const ongoing_order = ref({})
 let response = null;
 
 const props = defineProps({
@@ -45,6 +45,8 @@ const props = defineProps({
 
 onMounted(async() =>{
     book.value = await BooksController.GetBook(props.id)
+    ongoing_order.value = await OrdersController.CheckOngoingOrder()
+    console.log(ongoing_order.value)
 })
 
 const deleteBook = async() => {
@@ -59,24 +61,11 @@ const navigateToBooks = () => {
 }
 
 const purchase = async() => {
-    console.log(OrdersController.CheckOngoingOrder())
-    if (OrdersController.CheckOngoingOrder()) {
-        console.log("Proceed with purchase")
-    }
-    else {
-        console.log("Create new order since there is no ongoing order")
+    if (ongoing_order.value.length === 0) {
         OrdersController.CreateNewOrder()
-        OrdersController.CheckOngoingOrder()
-        OrdersController.AddBooksToOrder()
+        ongoing_order.value = await OrdersController.CheckOngoingOrder()
     }
-    // Check for current order V
-    // If there's not a current order create one
-    // Add this book to current order and create a list
-    // Get how many copies of same book
-}
-
-const preparePurchase = () => {
-    console.log("Preparing...")
+    OrdersController.AddBooksToOrder(ongoing_order.value, book.value, DEFAULT_QUANTITY)
 }
 
 </script>
