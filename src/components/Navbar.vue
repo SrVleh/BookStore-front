@@ -1,9 +1,12 @@
 <template>
     <div class="nav">
-        <div class="app-logo-container">
-            <img src="../../public/book-logo.svg" alt="">
-            <h1>BookStore</h1>
-        </div>
+        <router-link :to="Paths.HOME">
+            <div class="app-logo-container">
+                <img src="../../public/book-logo.svg" alt="">
+                <h1>BookStore</h1>
+            </div>
+        </router-link>
+
         <ul>
             <li>
                 <router-link :to="Paths.HOME">Home</router-link>
