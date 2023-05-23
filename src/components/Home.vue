@@ -12,16 +12,21 @@
         </div>
 
 
-       <router-link class="btn action-btn" :to="Paths.BOOKS_LIST">Go to books list</router-link>
+       <router-link v-if="store.state.isLoggedIn" class="btn action-btn" :to="Paths.BOOKS_LIST">Go to books list</router-link>
+       <router-link v-else class="btn action-btn" :to="Paths.LOG_IN">Login</router-link>
     </div>
 </template>
 
 <script>
 import Paths from "../constants/Paths.js";
+import {store} from "../state/index.js";
 
 export default {
     name: "Home",
     computed: {
+        store() {
+            return store
+        },
         Paths() {
             return Paths
         }
