@@ -11,12 +11,22 @@ import Footer from "./components/Footer.vue";
 import router from "./routes/router.js";
 import UserDataController from "./controllers/UserDataController.js";
 import RouterController from "./controllers/RouterController.js";
+import OrdersController from "./controllers/OrdersController.js";
+import {store} from "./state/index.js";
+
 
 router.beforeResolve((to, from, next) => {
     UserDataController.ReloadData()
     RouterController.Redirect(to, from, next)
+    checkForOngoingOrder()
 })
 
+const checkForOngoingOrder = () => {
+    OrdersController.CheckOngoingOrder().then((order) => {
+        order.length !== 0 ? store.commit('isOngoingOrderState', true)  :
+          store.commit('isOngoingOrderState', false)
+    })
+}
 </script>
 
 <style scoped lang="scss">
