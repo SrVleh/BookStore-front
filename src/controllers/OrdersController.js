@@ -17,8 +17,8 @@ class OrdersController {
         return CheckOngoingOrderService.Call()
     }
 
-    static CompleteOngoingOrder() {
-        return CompleteOngoingOrderService.Call()
+    static CompleteOngoingOrder(order) {
+        return CompleteOngoingOrderService.Call(order)
     }
 
     static AddBooksToOrder(ongoing_order, book, quantity) {

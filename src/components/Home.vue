@@ -77,23 +77,4 @@ export default {
         }
 
     }
-
-    .action-btn {
-        width: 14rem;
-        height: 3.7rem;
-        border: 1px solid #ACFCD9;
-        color: #ACFCD9;
-        font-size: 1.2rem;
-        font-weight: bolder;
-        margin-top: 2rem;
-        transition: all .5s ease-in-out;
-        padding: .9rem;
-    }
-
-    .action-btn:hover {
-        transform: scale(1.1);
-        background-color: #ACFCD9;
-        color: #1a1a1a;
-    }
-
 </style>
