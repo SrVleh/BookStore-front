@@ -14,6 +14,7 @@
                   <p class="order-details">ID: {{ order.id }}</p>
                   <p class="order-details">Books count: {{ order.books_count }}</p>
                   <p class="order-details">Price: {{ order.total_price }}€</p>
+                  <button class="delete-btn" @click="deleteOrder(order.id)"></button>
               </div>
           </div>
       </div>
@@ -24,19 +25,18 @@
   import { store } from "../../state/index.js";
   import {onMounted, ref} from "vue";
   import TokenController from "../../controllers/TokenController.js";
+  import OrdersController from "../../controllers/OrdersController.js";
 
   const orders = ref({})
 
   onMounted(async() => {
-      const res = await fetch("http://localhost:3000/orders", {
-          headers: {
-              "Content-Type": "application/json",
-              Authorization: TokenController.GetToken()
-          }
-      })
-
-      orders.value = await res.json()
+      orders.value = await OrdersController.GetOrderList()
   })
+
+  const deleteOrder = async(id) => {
+      await OrdersController.DeleteOrder(id)
+      orders.value = await OrdersController.GetOrderList()
+  }
 </script>
 
 <style scoped>
@@ -120,6 +120,22 @@
                       font-size: 1.2rem;
                       font-weight: bolder;
                       color: #d2d2d2;
+                  }
+
+                  .delete-btn {
+                      width: 1.5rem;
+                      height: 1.5rem;
+                      background-image: url("../../../public/delete-icon-green.svg");
+                      background-size: contain;
+                      background-repeat: no-repeat;
+                      background-position: center;
+                      transition: all .2s ease-in-out;
+                      padding: 0;
+                  }
+
+                  .delete-btn:hover {
+                      transform: scale(1.1);
+                      background-image: url("../../../public/delete-icon.svg");
                   }
               }
 
