@@ -15,6 +15,8 @@
                   <p class="order-details">Books count: {{ order.books_count }}</p>
                   <p class="order-details">Price: {{ order.total_price }}€</p>
                   <button class="delete-btn" @click="deleteOrder(order.id)"></button>
+                  <div class="order-status"
+                       :style="{ backgroundImage: `url(${ order.order_completed ? '../../../public/order_completed.svg' : '../../../public/ongoing_order.svg' })`}"></div>
               </div>
           </div>
       </div>
@@ -136,6 +138,14 @@
                   .delete-btn:hover {
                       transform: scale(1.1);
                       background-image: url("../../../public/delete-icon.svg");
+                  }
+
+                  .order-status {
+                      width: 1.5rem;
+                      height: 1.5rem;
+                      background-size: contain;
+                      background-repeat: no-repeat;
+                      background-position: center;
                   }
               }
 
