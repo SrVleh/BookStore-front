@@ -11,9 +11,9 @@
 
           <div class="orders-section" v-if="orders">
               <div class="order" v-for="order in orders" :key="order.id">
-                  <p class="order-details">ID: {{ order.id }}</p>
-                  <p class="order-details">Books count: {{ order.books_count }}</p>
+                  <p class="order-details">Books: {{ order.books_count }}</p>
                   <p class="order-details">Price: {{ order.total_price }}€</p>
+                  <p class="order-details">{{ order.created_at.split('T')[0] }}</p>
                   <button class="delete-btn" @click="deleteOrder(order.id)"></button>
                   <div class="order-status"
                        :style="{ backgroundImage: `url(${ order.order_completed ? '../../../public/order_completed.svg' : '../../../public/ongoing_order.svg' })`}"></div>
