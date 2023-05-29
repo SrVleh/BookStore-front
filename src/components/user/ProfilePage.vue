@@ -6,7 +6,7 @@
             <div v-if="store.state.userData.profile_pic != null" class="user-profile-picture" :style="{ backgroundImage: `url(${store.state.userData.profile_pic})` }"></div>
             <div v-else class="user-profile-picture" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
             <p class="username"> {{ store.state.userData.username }} </p>
-            <p class="books-count">234 Books</p>
+            <p class="books-count">{{ bookCount }} Books</p>
           </div>
 
           <div class="orders-section" v-if="orders">
@@ -30,14 +30,21 @@
   import OrdersController from "../../controllers/OrdersController.js";
 
   const orders = ref({})
-
+  const bookCount = ref(0)
   onMounted(async() => {
       orders.value = await OrdersController.GetOrderList()
+      calculateAllOrderedBooks()
   })
 
   const deleteOrder = async(id) => {
       await OrdersController.DeleteOrder(id)
       orders.value = await OrdersController.GetOrderList()
+  }
+
+  const calculateAllOrderedBooks = () => {
+      orders.value.forEach(order => {
+          bookCount.value += order.books_count
+      })
   }
 </script>
 
