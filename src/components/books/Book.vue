@@ -22,16 +22,17 @@
 </template>
 
 <script setup>
+import Paths from "../../constants/Paths.js";
+import { store } from "../../state/index.js";
 import {defineProps, ref, onMounted} from "vue";
+
 import BooksController from "../../controllers/BooksController.js";
 import DeleteBookService from "../../services/books/DeleteBookService.js";
 import NavigateService from "../../services/NavigateService.js";
-import Paths from "../../constants/Paths.js";
-import { store } from "../../state/index.js";
 import OrdersController from "../../controllers/OrdersController.js";
 
-const DEFAULT_QUANTITY = 1
 
+const DEFAULT_QUANTITY = 1
 const book = ref({})
 const ongoing_order = ref({})
 let response = null;

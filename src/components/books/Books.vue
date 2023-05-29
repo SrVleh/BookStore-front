@@ -24,6 +24,17 @@
   </div>
 </template>
 
+<script setup>
+import {ref, onMounted} from 'vue';
+import BooksController from "../../controllers/BooksController.js";
+
+const books = ref([])
+
+onMounted(async() => {
+    books.value = await BooksController.GetBooksList()
+})
+</script>
+
 <style scoped lang="scss">
 
 .page-container {
@@ -65,14 +76,3 @@
 }
 
 </style>
-
-<script setup>
-import {ref, onMounted} from 'vue';
-import BooksController from "../../controllers/BooksController.js";
-
-const books = ref([])
-
-onMounted(async() => {
-    books.value = await BooksController.GetBooksList()
-})
-</script>

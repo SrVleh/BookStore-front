@@ -1,5 +1,5 @@
 import TokenController from "../../controllers/TokenController.js";
-import {store} from "../../state/index.js";
+import { store } from "../../state/index.js";
 
 class CompleteOngoingOrderService {
     static Call(order) {

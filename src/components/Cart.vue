@@ -35,14 +35,11 @@
   const ordered_books = ref({})
 
   onMounted(async() => {
-      ordered_books.value = await test()
+      ordered_books.value = await getOrderedBooks()
       OrdersController.CheckOngoingOrder().then( orders => {
         ordered_books.value = ordered_books.value.filter(ob => ob.order_id === orders[0].id)
-        console.log(ordered_books.value)
         ordered_books.value.forEach(order => {
-            console.log(order.book_id)
             storeBooksToArray(order.book_id)
-            //books.value.push()
         })
     })
   })
@@ -52,7 +49,7 @@
       books.value.push(book)
   }
 
-  const test = async() => {
+  const getOrderedBooks = async() => {
       const res = await fetch("http://localhost:3000/ordered_books", {
           method: 'GET',
           headers: {
@@ -74,8 +71,8 @@
 
   .order-info-container {
       display: flex;
-      flex-direction: column;
       justify-content: center;
+      flex-wrap: wrap;
       align-items: center;
       width: 100%;
       height: 100%;
@@ -127,5 +124,4 @@
           background-size: contain;
       }
   }
-
 </style>

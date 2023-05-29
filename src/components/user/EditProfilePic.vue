@@ -11,10 +11,13 @@
 <script setup>
   import { ref } from "vue";
   import UserDataController from "../../controllers/UserDataController.js";
+  import RouterController from "../../controllers/RouterController.js";
+  import Paths from "../../constants/Paths.js";
 
   const prof_pic = ref('')
   const updateProfilePicture = () => {
       UserDataController.UpdateProfilePic(prof_pic.value)
+      RouterController.NavigateTo(Paths.PROFILE_PAGE)
   }
 </script>
 
@@ -49,5 +52,4 @@
         }
     }
 }
-
 </style>

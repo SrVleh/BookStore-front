@@ -1,8 +1,8 @@
 import TokenController from "../../controllers/TokenController.js";
 import UserDataController from "../../controllers/UserDataController.js";
-import {store} from "../../state/index.js";
 import RouterController from "../../controllers/RouterController.js";
 import Paths from "../../constants/Paths.js";
+
 class LoginService {
     static Call(userData) {
         fetch("http://localhost:3000/login", {

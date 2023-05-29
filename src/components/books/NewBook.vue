@@ -28,7 +28,7 @@ const synopsis = ref("")
 const API_URL = "http://localhost:3000/books"
 
 const createBook = async() => {
-    const res = await fetch(API_URL, {
+    await fetch(API_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

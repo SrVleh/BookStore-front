@@ -1,5 +1,5 @@
-import {store} from "../state/index.js";
 import TokenController from "../controllers/TokenController.js";
+import { store } from "../state/index.js";
 
 class ReloadDataService {
     static Call() {

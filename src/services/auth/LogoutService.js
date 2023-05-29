@@ -1,6 +1,6 @@
 import RouterController from "../../controllers/RouterController.js";
 import Paths from "../../constants/Paths.js";
-import {store} from "../../state/index.js";
+import { store } from "../../state/index.js";
 
 class LogoutService {
     static Call() {

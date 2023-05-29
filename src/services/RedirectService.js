@@ -1,5 +1,5 @@
-import {store} from "../state/index.js";
 import Paths from "../constants/Paths.js";
+import { store } from "../state/index.js";
 
 class RedirectService {
     static Call(to, from, next) {
