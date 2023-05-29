@@ -15,15 +15,7 @@
 
 <script setup>
 import { ref } from "vue";
-import TokenController from "../../controllers/TokenController.js";
-import RouterController from "../../controllers/RouterController.js";
-import Paths from "../../constants/Paths.js";
-import UserDataController from "../../controllers/UserDataController.js";
-import { store } from "../../state/index.js";
 import AuthController from "../../controllers/AuthController.js";
-
-const userEmail = ref('')
-const userPass = ref('')
 
 const userData = ref({
     email: '',

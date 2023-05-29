@@ -11,7 +11,6 @@ class CreateOrderService {
         })
         .then((res) => {
             if (res.ok) {
-                console.log("Status: " + res.ok)
                 return res.json()
             } else {
                 throw new Error(res);

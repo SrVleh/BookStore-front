@@ -1,4 +1,4 @@
-import {store} from "../state/index.js";
+import { store } from "../state/index.js";
 import UserDataController from "../controllers/UserDataController.js";
 
 class UpdateProfilePicService {

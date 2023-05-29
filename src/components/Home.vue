@@ -19,7 +19,7 @@
 
 <script>
 import Paths from "../constants/Paths.js";
-import {store} from "../state/index.js";
+import { store } from "../state/index.js";
 
 export default {
     name: "Home",
@@ -68,13 +68,11 @@ export default {
         .vue-text{
             color: #3bb07f;
             font-weight: bolder;
-
         }
 
         .ruby-text {
             color: #ec4038;
             font-weight: bolder;
         }
-
     }
 </style>

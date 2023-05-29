@@ -26,7 +26,6 @@
 <script setup>
   import { store } from "../../state/index.js";
   import {onMounted, ref} from "vue";
-  import TokenController from "../../controllers/TokenController.js";
   import OrdersController from "../../controllers/OrdersController.js";
 
   const orders = ref({})
