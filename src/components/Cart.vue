@@ -26,8 +26,8 @@
 <script setup>
   import OrdersController from "../controllers/OrdersController.js";
   import Paths from "../constants/Paths.js";
-  import {store} from "../state/index.js";
-  import {onMounted, ref} from "vue";
+  import { store } from "../state/index.js";
+  import { onMounted, ref } from "vue";
   import TokenController from "../controllers/TokenController.js";
   import BooksController from "../controllers/BooksController.js";
 

@@ -1,0 +1,6 @@
+
+class SendMessageService {
+    static Call() {
+
+    }
+}
