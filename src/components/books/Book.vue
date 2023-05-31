@@ -1,6 +1,7 @@
 <template>
   <div class="page-container">
-      <div class="book purchase" :style="{ backgroundImage: `url(${ book.image_url })`}">
+      <Loader v-if="store.state.isLoading" />
+      <div class="book purchase" v-if="!store.state.isLoading" :style="{ backgroundImage: `url(${ book.image_url })`}">
           <img class="book-icon" src="../../../public/book-logo.svg" alt="" style ="color: white">
           <router-link v-if="store.state.userData.isAdmin" :to="'/edit-book/' + book.id" class="edit-btn hov-icon"></router-link>
           <button v-if="store.state.userData.isAdmin" class="delete-btn hov-icon" @click="deleteBook"></button>
@@ -14,7 +15,7 @@
           </div>
       </div>
 
-      <div class="synopsis-container" v-if="book.synopsis != null">
+      <div class="synopsis-container" v-if="book.synopsis != null && !store.state.isLoading">
           <h1 class="synopsis-title">Synopsis</h1>
           <p class="synopsis">{{ book.synopsis }}</p>
       </div>
@@ -30,6 +31,7 @@ import BooksController from "../../controllers/BooksController.js";
 import DeleteBookService from "../../services/books/DeleteBookService.js";
 import NavigateService from "../../services/NavigateService.js";
 import OrdersController from "../../controllers/OrdersController.js";
+import Loader from "../shared/Loader.vue";
 
 
 const DEFAULT_QUANTITY = 1
@@ -45,8 +47,10 @@ const props = defineProps({
 })
 
 onMounted(async() =>{
+    store.commit('changeLoadingState', true)
     book.value = await BooksController.GetBook(props.id)
     ongoing_order.value = await OrdersController.CheckOngoingOrder()
+    store.commit('changeLoadingState', false)
 })
 
 const deleteBook = async() => {

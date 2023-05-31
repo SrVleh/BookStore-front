@@ -5,7 +5,8 @@ export const store = createStore({
     state: {
         userData: {},
         isLoggedIn: false,
-        isOngoingOrder: false
+        isOngoingOrder: false,
+        isLoading: false
     },
     mutations: {
         storeUserData(state, newData){
@@ -16,6 +17,9 @@ export const store = createStore({
         },
         isOngoingOrderState(state, currentOrder) {
             state.isOngoingOrder = currentOrder
+        },
+        changeLoadingState(state, isLoading) {
+            state.isLoading = isLoading
         }
     }
 })

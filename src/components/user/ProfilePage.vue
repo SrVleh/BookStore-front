@@ -1,6 +1,7 @@
 <template>
   <div class="page-container">
-      <div class="profile-data-section">
+      <Loader v-if="store.state.isLoading" />
+      <div class="profile-data-section" v-if="!store.state.isLoading">
           <div class="user-data" v-if="store.state.userData">
             <router-link :to="'/edit_profile_pic/'" class="edit-pic"></router-link>
             <div v-if="store.state.userData.profile_pic != null" class="user-profile-picture" :style="{ backgroundImage: `url(${store.state.userData.profile_pic})` }"></div>
@@ -25,14 +26,18 @@
 
 <script setup>
   import { store } from "../../state/index.js";
-  import {onMounted, ref} from "vue";
+  import { onMounted, ref } from "vue";
   import OrdersController from "../../controllers/OrdersController.js";
+  import Loader from "../shared/Loader.vue";
 
   const orders = ref({})
   const bookCount = ref(0)
+
   onMounted(async() => {
+      store.commit('changeLoadingState', true)
       orders.value = await OrdersController.GetOrderList()
       calculateAllOrderedBooks()
+      store.commit('changeLoadingState', false)
   })
 
   const deleteOrder = async(id) => {
