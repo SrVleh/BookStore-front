@@ -11,6 +11,7 @@
             <p class="account-text">Dont have an account? <a href="#">Sign up!</a></p>
         </div>
     </div>
+
 </template>
 
 <script setup>

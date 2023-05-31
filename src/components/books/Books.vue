@@ -1,6 +1,7 @@
 <template>
   <div class="page-container">
-    <template v-if="books != null">
+    <Loader v-if="store.state.isLoading" />
+    <template v-if="books != null && !store.state.isLoading">
       <div class="book-container" v-for="book in books" :key="book.id">
         <router-link :to="'/book/' + book.id">
           <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
@@ -16,7 +17,7 @@
           </router-link>
       </div>
     </template>
-    <template v-else>
+    <template v-if="books === null && store.state.isLoading">
       <div class="empty-content-element">
         <p>Oh no! There are no books listed 😢...</p>
       </div>
@@ -27,11 +28,15 @@
 <script setup>
 import {ref, onMounted} from 'vue';
 import BooksController from "../../controllers/BooksController.js";
+import Loader from "../shared/Loader.vue";
+import {store} from "../../state/index.js";
 
 const books = ref([])
 
 onMounted(async() => {
+    store.commit('changeLoadingState', true)
     books.value = await BooksController.GetBooksList()
+    store.commit('changeLoadingState', false)
 })
 </script>
 
