@@ -32,9 +32,11 @@ import DeleteBookService from "../../services/books/DeleteBookService.js";
 import NavigateService from "../../services/NavigateService.js";
 import OrdersController from "../../controllers/OrdersController.js";
 import Loader from "../shared/Loader.vue";
+import GetCurrentOrdersService from "../../services/shopping/GetCurrentOrdersService.js";
 
 
 const DEFAULT_QUANTITY = 1
+const orderedBooks = ref([])
 const book = ref({})
 const ongoing_order = ref({})
 let response = null;
@@ -47,6 +49,7 @@ const props = defineProps({
 })
 
 onMounted(async() =>{
+    OrdersController.GetCurrentOrders()
     store.commit('changeLoadingState', true)
     book.value = await BooksController.GetBook(props.id)
     ongoing_order.value = await OrdersController.CheckOngoingOrder()
@@ -65,6 +68,9 @@ const navigateToBooks = () => {
 }
 
 const purchase = async() => {
+    orderedBooks.value.forEach(order => {
+        console.log(order)
+    })
     if (ongoing_order.value.length === 0) {
         OrdersController.CreateNewOrder()
         ongoing_order.value = await OrdersController.CheckOngoingOrder()
