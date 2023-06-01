@@ -5,6 +5,7 @@ import CompleteOngoingOrderService from "../services/shopping/CompleteOngoingOrd
 import AddBooksToOrderService from "../services/shopping/AddBooksToOrderService.js";
 import DeleteOrderService from "../services/shopping/DeleteOrderService.js";
 import GetOrderListService from "../services/shopping/GetOrderListService.js";
+import GetCurrentOrdersService from "../services/shopping/GetCurrentOrdersService.js";
 
 class OrdersController {
     static CreateNewOrder() {
@@ -33,6 +34,10 @@ class OrdersController {
 
     static GetOrderList() {
         return GetOrderListService.Call()
+    }
+
+    static GetCurrentOrders() {
+        return GetCurrentOrdersService.Call()
     }
 }
 

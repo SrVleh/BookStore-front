@@ -53,16 +53,7 @@
       books.value.push(book)
   }
 
-  const getOrderedBooks = async() => {
-      const res = await fetch("http://localhost:3000/ordered_books", {
-          method: 'GET',
-          headers: {
-              "Content-Type": "application/json",
-              Authorization: TokenController.GetToken()
-          }
-      })
-      return res.json()
-  }
+
 
   const completePurchase = () => {
       OrdersController.CheckOngoingOrder().then((order) => {
