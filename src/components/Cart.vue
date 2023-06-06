@@ -29,31 +29,29 @@
   import Paths from "../constants/Paths.js";
   import { store } from "../state/index.js";
   import { onMounted, ref } from "vue";
-  import TokenController from "../controllers/TokenController.js";
-  import BooksController from "../controllers/BooksController.js";
   import Loader from "./shared/Loader.vue";
+  import BooksController from "../controllers/BooksController.js";
 
   const books = ref([])
-  const ordered_books = ref({})
+  const ordered_books = ref([])
 
   onMounted(async() => {
       store.commit('changeLoadingState', true)
-      ordered_books.value = await getOrderedBooks()
-      OrdersController.CheckOngoingOrder().then( orders => {
-        ordered_books.value = ordered_books.value.filter(ob => ob.order_id === orders[0].id)
-        ordered_books.value.forEach(order => {
-            storeBooksToArray(order.book_id)
-        })
-    })
+      let ongoingOrder = await OrdersController.CheckOngoingOrder()
+      if (ongoingOrder.length !== 0) {
+          ordered_books.value = await OrdersController.GetCurrentOrders()
+          ordered_books.value.forEach(orderedBook => {
+              storeBookInBooksList(orderedBook)
+          })
+      }
       store.commit('changeLoadingState', false)
   })
 
-  const storeBooksToArray = async (id) => {
-      let book = await BooksController.GetBook(id)
-      books.value.push(book)
+  const storeBookInBooksList = async(book) => {
+      let bookData = await BooksController.GetBook(book.book_id)
+      console.log(bookData)
+      books.value.push(bookData)
   }
-
-
 
   const completePurchase = () => {
       OrdersController.CheckOngoingOrder().then((order) => {
