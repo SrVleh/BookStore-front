@@ -58,18 +58,18 @@ onMounted(async () => {
     if (ongoingOrder.length !== 0) {
         ordered_books.value = await OrdersController.GetCurrentOrders()
         ordered_books.value.forEach(orderedBook => {
-            storeBookInBooksList(orderedBook)
+            storeBookInBooksList(orderedBook, orderedBook.quantity)
         })
     }
     calculateTotalPrice()
     store.commit('changeLoadingState', false)
 })
 
-const storeBookInBooksList = async (book) => {
+const storeBookInBooksList = async (book, quantity) => {
     let bookData = await BooksController.GetBook(book.book_id)
     let newCustomBook = {
         book: bookData,
-        quantity: 1
+        quantity: quantity
     }
     total_price.value += newCustomBook.book.price * newCustomBook.quantity
     custom_books.value.push(newCustomBook)
@@ -85,8 +85,9 @@ const calculateTotalPrice = () => {
 const removeQuantity = (cb) => {
     if (cb.quantity > 1) {
         cb.quantity--
+        updateOrderedBook(cb)
     }else {
-        //remove
+       deleteOrderedBook(cb)
     }
     calculateTotalPrice()
 }
@@ -94,6 +95,31 @@ const removeQuantity = (cb) => {
 const addQuantity = (cb) => {
     cb.quantity++
     calculateTotalPrice()
+    updateOrderedBook(cb)
+}
+
+const updateOrderedBook = (ordered_book) => {
+    let selectedOrder = {}
+    ordered_books.value.forEach(order => {
+        if (order.book_id === ordered_book.book.id) {
+            selectedOrder = order
+        }
+    })
+
+    OrdersController.UpdateOrderedBook(selectedOrder, ordered_book.quantity)
+}
+
+const deleteOrderedBook = (ordered_book) => {
+    custom_books.value.forEach((custom_book, index) => {
+        if (custom_book.book.id === ordered_book.book.id){
+            custom_books.value.splice(index, 1)
+        }
+    })
+    ordered_books.value.forEach(order => {
+        if (order.book_id === ordered_book.book.id) {
+            OrdersController.DeleteOrderedBook(order)
+        }
+    })
 }
 
 const completePurchase = () => {

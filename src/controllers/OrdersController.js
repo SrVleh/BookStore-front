@@ -6,6 +6,8 @@ import AddBooksToOrderService from "../services/shopping/AddBooksToOrderService.
 import DeleteOrderService from "../services/shopping/DeleteOrderService.js";
 import GetOrderListService from "../services/shopping/GetOrderListService.js";
 import GetCurrentOrdersService from "../services/shopping/GetCurrentOrdersService.js";
+import UpdateOrderedBookService from "../services/shopping/UpdateOrderedBookService.js";
+import DeleteOrderedBookService from "../services/shopping/DeleteOrderedBookService.js";
 
 class OrdersController {
     static CreateNewOrder() {
@@ -38,6 +40,14 @@ class OrdersController {
 
     static GetCurrentOrders() {
         return GetCurrentOrdersService.Call()
+    }
+
+    static UpdateOrderedBook(ordered_book, quantity) {
+        return UpdateOrderedBookService.Call(ordered_book, quantity)
+    }
+
+    static DeleteOrderedBook(ordered_book) {
+        return DeleteOrderedBookService.Call(ordered_book)
     }
 }
 

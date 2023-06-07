@@ -33,6 +33,8 @@
   const orders = ref({})
   const bookCount = ref(0)
 
+  // TODO: Calculate price based on quantity
+
   onMounted(async() => {
       store.commit('changeLoadingState', true)
       orders.value = await OrdersController.GetOrderList()
