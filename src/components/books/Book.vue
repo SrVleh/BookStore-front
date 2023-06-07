@@ -44,6 +44,7 @@ import DeleteBookService from "../../services/books/DeleteBookService.js";
 import NavigateService from "../../services/NavigateService.js";
 import OrdersController from "../../controllers/OrdersController.js";
 import Loader from "../shared/Loader.vue";
+import CommentsController from "../../controllers/CommentsController.js";
 
 
 const DEFAULT_QUANTITY = 1
@@ -51,6 +52,7 @@ const ordered_books = ref([])
 const book = ref({})
 const ongoing_order = ref({})
 const alreadyBought = ref(false)
+const comments = ref([])
 let response = null;
 
 const props = defineProps({
@@ -73,6 +75,7 @@ onMounted(async() =>{
             }
         })
     }
+    getComments()
     store.commit('changeLoadingState', false)
 })
 
@@ -85,6 +88,10 @@ const deleteBook = async() => {
 
 const navigateToBooks = () => {
     NavigateService.Call(Paths.BOOKS_LIST)
+}
+
+const getComments = async () => {
+    comments.value = await CommentsController.GetCommentsByBook(book.value.id)
 }
 
 const purchase = async() => {
