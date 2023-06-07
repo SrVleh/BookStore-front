@@ -1,23 +1,35 @@
 <template>
   <div class="page-container">
       <Loader v-if="store.state.isLoading" />
-      <div class="book purchase" v-if="!store.state.isLoading" :style="{ backgroundImage: `url(${ book.image_url })`}">
-          <img class="book-icon" src="../../../public/book-logo.svg" alt="" style ="color: white">
-          <router-link v-if="store.state.userData.isAdmin" :to="'/edit-book/' + book.id" class="edit-btn hov-icon"></router-link>
-          <button v-if="store.state.userData.isAdmin" class="delete-btn hov-icon" @click="deleteBook"></button>
-          <div class="book-info">
-              <h2 class="title">{{ book.title }}</h2>
-              <p class="author">{{ book.author }}</p>
-              <div class="actions">
-                  <p class="price">{{ book.price }}€</p>
-                  <button class="buy-btn" v-if="!alreadyBought" @click="purchase()"></button>
+      <div class="book-data-container">
+          <div class="book purchase" v-if="!store.state.isLoading" :style="{ backgroundImage: `url(${ book.image_url })`}">
+              <img class="book-icon" src="../../../public/book-logo.svg" alt="" style ="color: white">
+              <router-link v-if="store.state.userData.isAdmin" :to="'/edit-book/' + book.id" class="edit-btn hov-icon"></router-link>
+              <button v-if="store.state.userData.isAdmin" class="delete-btn hov-icon" @click="deleteBook"></button>
+              <div class="book-info">
+                  <h2 class="title">{{ book.title }}</h2>
+                  <p class="author">{{ book.author }}</p>
+                  <div class="actions">
+                      <p class="price">{{ book.price }}€</p>
+                      <button class="buy-btn" v-if="!alreadyBought" @click="purchase()"></button>
+                  </div>
               </div>
           </div>
-      </div>
 
-      <div class="synopsis-container" v-if="book.synopsis != null && !store.state.isLoading">
-          <h1 class="synopsis-title">Synopsis</h1>
-          <p class="synopsis">{{ book.synopsis }}</p>
+          <div class="synopsis-container" v-if="book.synopsis != null && !store.state.isLoading">
+              <h1 class="synopsis-title">Synopsis</h1>
+              <p class="synopsis">{{ book.synopsis }}</p>
+          </div>
+      </div>
+      <div class="recommendations-container">
+          <div class="recommendation-textbox-container">
+              <input class="custom-input" type="text" placeholder="Write a title">
+              <textarea class="custom-area" type="text" :placeholder="`Write your comment about ${ book.title }`"/>
+              <button class="action-btn">Send</button>
+          </div>
+          <div class="recommendations-list">
+
+          </div>
       </div>
   </div>
 </template>
@@ -88,6 +100,52 @@ const purchase = async() => {
 <style scoped>
     .page-container {
         gap: 3rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book-data-container {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        width: 75%;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .recommendations-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        gap: 3rem;
+
+        .recommendation-textbox-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 60%;
+            height: auto;
+
+            .custom-area {
+                width: 100%;
+                transition: all 1s ease-in-out;
+            }
+            .custom-area:focus-visible {
+                transform: scale(1.02);
+            }
+
+            .action-btn {
+                width: auto;
+                height: 3rem;
+                padding: 0;
+            }
+            .action-btn:hover {
+                transform: scale(1.03);
+            }
+        }
     }
 
     .book {
