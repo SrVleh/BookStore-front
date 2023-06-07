@@ -46,6 +46,7 @@ import {store} from "../state/index.js";
 import {onMounted, ref} from "vue";
 import Loader from "./shared/Loader.vue";
 import BooksController from "../controllers/BooksController.js";
+import RouterController from "../controllers/RouterController.js";
 
 const books = ref([])
 const ordered_books = ref([])
@@ -116,8 +117,12 @@ const deleteOrderedBook = (ordered_book) => {
         }
     })
     ordered_books.value.forEach(order => {
-        if (order.book_id === ordered_book.book.id) {
+        if (order.book_id === ordered_book.book.id && ordered_books.value.length > 1) {
             OrdersController.DeleteOrderedBook(order)
+        }
+        if (ordered_books.value.length === 1) {
+            OrdersController.DeleteOrder(order.order_id)
+            RouterController.NavigateTo(Paths.BOOKS_LIST)
         }
     })
 }
