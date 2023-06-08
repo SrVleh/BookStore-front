@@ -21,14 +21,26 @@
               <p class="synopsis">{{ book.synopsis }}</p>
           </div>
       </div>
-      <div class="recommendations-container">
-          <div class="recommendation-textbox-container">
+      <div class="comments-container">
+          <div class="comment-textbox-container">
               <input class="custom-input" type="text" placeholder="Write a title">
               <textarea class="custom-area" type="text" :placeholder="`Write your comment about ${ book.title }`"/>
               <button class="action-btn">Send</button>
           </div>
-          <div class="recommendations-list">
-
+          <div class="comments-list" v-for="comment in comments" :key="comment.id">
+                <div class="comment">
+                    <div class="comment-owner">
+                        <div class="user-image"></div>
+                        <p class="username">User</p>
+                    </div>
+                    <div class="title-and-body">
+                        <p class="title">{{ comment.title }}</p>
+                        <p class="body">{{ comment.body }}</p>
+                    </div>
+                    <div class="publication-date">
+                        <p class="date">{{ comment.created_at }}</p>
+                    </div>
+                </div>
           </div>
       </div>
   </div>
@@ -120,16 +132,17 @@ const purchase = async() => {
         padding: 1rem;
     }
 
-    .recommendations-container {
+    .comments-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: auto;
         padding: 1rem;
-        gap: 3rem;
+        gap: 5rem;
 
-        .recommendation-textbox-container {
+        .comment-textbox-container {
             display: flex;
             flex-direction: column;
             gap: 1rem;
@@ -148,12 +161,81 @@ const purchase = async() => {
                 width: auto;
                 height: 3rem;
                 padding: 0;
+                margin: 0;
             }
             .action-btn:hover {
                 transform: scale(1.03);
             }
         }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            min-height: 10rem;
+            background-color: #101010;
+            border-radius: 8px;
+            padding: 1rem;
+
+            .comment {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 1rem;
+
+                .comment-owner {
+                    display: flex;
+                    align-items: flex-end;
+                    width: 100%;
+                    height: 2rem;
+                    gap: .5rem;
+
+                    .user-image {
+                        width: 2rem;
+                        height: 2rem;
+                        border-radius: 50%;
+                        background-color: red;
+                    }
+
+                    .username {
+                        font-size: 1rem;
+                        font-weight: bolder;
+                    }
+                }
+
+                .title-and-body {
+                    display: flex;
+                    flex-direction: column;
+
+                    .title {
+                        font-size: 2rem;
+                        font-weight: bolder;
+                    }
+
+                    .body {
+                        font-size: 1rem;
+                        font-weight: normal;
+                        color: #7e7e7e;
+                    }
+                }
+
+                .publication-date {
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 100%;
+                    height: 1rem;
+
+                    .date {
+                        font-size: .8rem;
+                        font-weight: normal;
+                        color: #575757;
+                    }
+                }
+            }
+        }
     }
+
+
 
     .book {
         width: 23rem;
