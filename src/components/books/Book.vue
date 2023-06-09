@@ -126,6 +126,7 @@ const createNewComment = async () => {
     newComment.value.user_id = store.state.userData.id
     CommentsController.NewComment(newComment)
     newComment.value = {}
+    users_comments.value = []
     getUserAndComments()
 }
 
