@@ -23,22 +23,22 @@
       </div>
       <div class="comments-container">
           <div class="comment-textbox-container">
-              <input class="custom-input" type="text" placeholder="Write a title">
-              <textarea class="custom-area" type="text" :placeholder="`Write your comment about ${ book.title }`"/>
-              <button class="action-btn">Send</button>
+              <input class="custom-input" v-model="newComment.title" type="text" placeholder="Write a title">
+              <textarea class="custom-area" v-model="newComment.body" type="text" :placeholder="`Write your comment about ${ book.title }`"/>
+              <button class="action-btn" @click="createNewComment">Send</button>
           </div>
-          <div class="comments-list" v-for="comment in comments" :key="comment.id">
-                <div class="comment">
+          <div class="comments-list">
+                <div class="comment" v-for="user_comment in users_comments" :key="user_comment.comment.id">
                     <div class="comment-owner">
-                        <div class="user-image"></div>
-                        <p class="username">User</p>
+                        <div class="user-image" :style="{ backgroundImage: `url(${ user_comment.user.profile_pic })` }"></div>
+                        <p class="username">{{ user_comment.user.user_name }}</p>
                     </div>
                     <div class="title-and-body">
-                        <p class="title">{{ comment.title }}</p>
-                        <p class="body">{{ comment.body }}</p>
+                        <p class="title">{{ user_comment.comment.title }}</p>
+                        <p class="body">{{ user_comment.comment.body }}</p>
                     </div>
                     <div class="publication-date">
-                        <p class="date">{{ comment.created_at }}</p>
+                        <p class="date">{{ user_comment.comment.created_at.split('T')[0] }}</p>
                     </div>
                 </div>
           </div>
@@ -64,7 +64,13 @@ const ordered_books = ref([])
 const book = ref({})
 const ongoing_order = ref({})
 const alreadyBought = ref(false)
-const comments = ref([])
+const users_comments = ref([])
+const newComment = ref({
+    title: "",
+    body: "",
+    user_id: 0,
+    book_id: 0
+})
 let response = null;
 
 const props = defineProps({
@@ -87,7 +93,7 @@ onMounted(async() =>{
             }
         })
     }
-    getComments()
+    getUserAndComments()
     store.commit('changeLoadingState', false)
 })
 
@@ -102,8 +108,25 @@ const navigateToBooks = () => {
     NavigateService.Call(Paths.BOOKS_LIST)
 }
 
-const getComments = async () => {
-    comments.value = await CommentsController.GetCommentsByBook(book.value.id)
+const getUserAndComments = async () => {
+    let comments = await CommentsController.GetCommentsByBook(book.value.id)
+
+    for (let comment of comments) {
+        let newUserComments = {
+            user: await CommentsController.GetCommentUser(comment.id),
+            comment: comment
+        }
+        users_comments.value.push(newUserComments)
+    }
+    console.log(users_comments.value)
+}
+
+const createNewComment = async () => {
+    newComment.value.book_id = book.value.id
+    newComment.value.user_id = store.state.userData.id
+    CommentsController.NewComment(newComment)
+    newComment.value = {}
+    getUserAndComments()
 }
 
 const purchase = async() => {
@@ -172,15 +195,17 @@ const purchase = async() => {
             display: flex;
             flex-direction: column;
             width: 60%;
-            min-height: 10rem;
-            background-color: #101010;
-            border-radius: 8px;
             padding: 1rem;
+            gap: 2rem;
 
             .comment {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
+                min-height: 10rem;
+                background-color: #101010;
+                border-radius: 8px;
+                padding: 1rem;
                 gap: 1rem;
 
                 .comment-owner {
@@ -194,7 +219,9 @@ const purchase = async() => {
                         width: 2rem;
                         height: 2rem;
                         border-radius: 50%;
-                        background-color: red;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
                     }
 
                     .username {
