@@ -118,7 +118,7 @@ button {
 .custom-input {
   width: 35%;
   height: 2.5rem;
-  padding: .8rem;
+  padding: .2rem .8rem;
   background-color: #101010;
   border: 1px solid rgb(172, 252, 217);
   border-radius: 8px;
@@ -140,6 +140,10 @@ button {
 .custom-area {
   @extend .custom-input;
   min-height: 10rem;
+}
+
+.category-selector {
+  @extend .custom-input
 }
 
 .custom-btn {
