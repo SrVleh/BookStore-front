@@ -22,7 +22,7 @@
 import {ref} from 'vue';
 import RouterController from "../../controllers/RouterController.js";
 import Paths from "../../constants/Paths.js";
-import BOOKS_CATEGORIES from "../../services/books/category/BooksCategoriesService.js";
+import BOOKS_CATEGORIES from "../../services/books/category/BooksCategories.js";
 
 const title = ref("")
 const author = ref("")

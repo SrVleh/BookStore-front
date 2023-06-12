@@ -1,4 +1,5 @@
 const BOOKS_CATEGORIES = [
+    "All",
     "Action and adventure",
     "Art/architecture",
     "Alternate history",
