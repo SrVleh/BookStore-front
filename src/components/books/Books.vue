@@ -34,10 +34,10 @@
 import {ref, onMounted} from 'vue';
 import BooksController from "../../controllers/BooksController.js";
 import Loader from "../shared/Loader.vue";
-import {store} from "../../state/index.js";
+import { store } from "../../state/index.js";
 import BOOKS_CATEGORIES from "../../services/books/category/BooksCategories.js";
 
-const selected_category = ref("")
+const selected_category = ref(BOOKS_CATEGORIES[0])
 const books = ref([])
 
 onMounted(async() => {
