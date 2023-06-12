@@ -4,6 +4,9 @@
             <h1>Edit book</h1>
             <input class="custom-input" v-model="book.title" type="text" placeholder="Title">
             <input class="custom-input" v-model="book.author" type="text" placeholder="Author">
+            <select class="category-selector" v-model="book.category">
+                <option v-for="category in BOOKS_CATEGORIES">{{ category }}</option>
+            </select>
             <input class="custom-input" v-model="book.price" type="number" placeholder="0">
             <input class="custom-input" v-model="book.image_url" type="url" placeholder="Image url">
             <textarea class="custom-area" v-model="book.synopsis" type="text" placeholder="Synopsis"/>
@@ -20,6 +23,7 @@ import {defineProps, ref, onMounted} from "vue";
 import BooksController from "../../controllers/BooksController.js";
 import NavigateService from "../../services/NavigateService.js";
 import RawPaths from "../../constants/RawPaths.js";
+import BOOKS_CATEGORIES from "../../services/books/category/BooksCategories.js";
 
 const book = ref({})
 let updateResponse = null;

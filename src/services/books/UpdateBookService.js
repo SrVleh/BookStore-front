@@ -14,6 +14,7 @@ class GetBooksListService {
             body: JSON.stringify({
                 title: book.title,
                 author: book.author,
+                category: book.category,
                 price: book.price,
                 image_url: book.image_url,
                 synopsis: book.synopsis,
