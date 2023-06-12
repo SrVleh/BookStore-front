@@ -7,7 +7,7 @@
                 <img class="book-icon" src="../../../public/book-logo.svg" alt="" style="color: white">
                 <router-link v-if="store.state.userData.isAdmin" :to="'/edit-book/' + book.id"
                              class="edit-btn hov-icon"></router-link>
-                <button v-if="store.state.userData.isAdmin" class="delete-btn hov-icon" @click="deleteBook"></button>
+                <button v-if="store.state.userData.isAdmin" class="delete-btn hov-icon" @click="BooksController.DeleteBook(book.id)"></button>
                 <div class="book-info">
                     <h2 class="title">{{ book.title }}</h2>
                     <p class="author">{{ book.author }}</p>
@@ -51,16 +51,17 @@
 </template>
 
 <script setup>
-import Paths from "../../constants/Paths.js";
-import {store} from "../../state/index.js";
-import {defineProps, ref, onMounted} from "vue";
+
+// TODO: Improve this code!!!
+
+import { store } from "../../state/index.js";
+import { defineProps, ref, onMounted } from "vue";
 
 import BooksController from "../../controllers/BooksController.js";
-import DeleteBookService from "../../services/books/DeleteBookService.js";
-import NavigateService from "../../services/NavigateService.js";
 import OrdersController from "../../controllers/OrdersController.js";
 import Loader from "../shared/Loader.vue";
 import CommentsController from "../../controllers/CommentsController.js";
+import StateController from "../../controllers/StateController.js";
 
 const DEFAULT_QUANTITY = 1
 const ordered_books = ref([])
@@ -71,10 +72,9 @@ const users_comments = ref([])
 const newComment = ref({
     title: "",
     body: "",
-    user_id: 0,
+    user_id: store.state.userData.id,
     book_id: 0
 })
-let response = null;
 
 const props = defineProps({
     id: {
@@ -84,52 +84,35 @@ const props = defineProps({
 })
 
 onMounted(async () => {
-    store.commit('changeLoadingState', true)
+    StateController.ChangeLoadingState(true)
+    await loadData()
+    checkAlreadyBought()
+    users_comments.value = await CommentsController.GetUserAndComments(book.value.id)
+    StateController.ChangeLoadingState(false)
+})
+
+const loadData = async() => {
     book.value = await BooksController.GetBook(props.id)
     ongoing_order.value = await OrdersController.CheckOngoingOrder()
     ordered_books.value = await OrdersController.GetCurrentOrders()
-    let ongoingOrder = await OrdersController.CheckOngoingOrder()
-    if (ongoingOrder.length !== 0) {
-        ordered_books.value.forEach(orderedBook => {
-            if (orderedBook.book_id === book.value.id) {
-                alreadyBought.value = true;
-            }
-        })
-    }
-    getUserAndComments()
-    store.commit('changeLoadingState', false)
-})
-
-const deleteBook = async () => {
-    response = await DeleteBookService.DeleteBook(props.id)
-        .then(() => {
-            navigateToBooks()
-        })
+    users_comments.value = await CommentsController.GetUserAndComments(book.value.id)
 }
 
-const navigateToBooks = () => {
-    NavigateService.Call(Paths.BOOKS_LIST)
-}
+const checkAlreadyBought = () => {
+    if (ongoing_order.value.length === 0) return
 
-const getUserAndComments = async () => {
-    let comments = await CommentsController.GetCommentsByBook(book.value.id)
-
-    for (let comment of comments) {
-        let newUserComments = {
-            user: await CommentsController.GetCommentUser(comment.id),
-            comment: comment
+    ordered_books.value.forEach(orderedBook => {
+        if (orderedBook.book_id === book.value.id) {
+            alreadyBought.value = true;
         }
-        users_comments.value.push(newUserComments)
-    }
+    })
 }
 
 const createNewComment = async () => {
-    newComment.value.book_id = book.value.id
-    newComment.value.user_id = store.state.userData.id
     CommentsController.NewComment(newComment)
     newComment.value = {}
     users_comments.value = []
-    getUserAndComments()
+    await loadData()
 }
 
 const purchase = async () => {

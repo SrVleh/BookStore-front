@@ -6,7 +6,8 @@ class GetOrderListService {
     }
 
     static GetOrderList = async() => {
-        const res = await fetch("http://localhost:3000/orders", {
+        const res = await fetch("http://localhost:3000/orders/", {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: TokenController.GetToken()

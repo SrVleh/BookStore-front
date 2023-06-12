@@ -40,13 +40,17 @@
 </template>
 
 <script setup>
+
+// TODO: Research about optimisation
+
 import OrdersController from "../controllers/OrdersController.js";
 import Paths from "../constants/Paths.js";
-import {store} from "../state/index.js";
-import {onMounted, ref} from "vue";
+import { store } from "../state/index.js";
+import { onMounted, ref } from "vue";
 import Loader from "./shared/Loader.vue";
 import BooksController from "../controllers/BooksController.js";
 import RouterController from "../controllers/RouterController.js";
+import StateController from "../controllers/StateController.js";
 
 const books = ref([])
 const ordered_books = ref([])
@@ -54,7 +58,7 @@ const custom_books = ref([])
 const total_price = ref(0)
 
 onMounted(async () => {
-    store.commit('changeLoadingState', true)
+    StateController.ChangeLoadingState(true)
     let ongoingOrder = await OrdersController.CheckOngoingOrder()
     if (ongoingOrder.length !== 0) {
         ordered_books.value = await OrdersController.GetCurrentOrders()
@@ -63,7 +67,7 @@ onMounted(async () => {
         })
     }
     calculateTotalPrice()
-    store.commit('changeLoadingState', false)
+    StateController.ChangeLoadingState(false)
 })
 
 const storeBookInBooksList = async (book, quantity) => {

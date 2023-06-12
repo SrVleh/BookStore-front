@@ -34,8 +34,10 @@
             </router-link>
 
             <router-link :to="Paths.PROFILE_PAGE">
-                <div v-if="store.state.userData.profile_pic != null" class="profile-menu-item" :style="{ backgroundImage: `url(${ store.state.userData.profile_pic })` }"></div>
-                <div v-else class="profile-menu-item" :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
+                <div v-if="store.state.userData.profile_pic != null" class="profile-menu-item"
+                     :style="{ backgroundImage: `url(${ store.state.userData.profile_pic })` }"></div>
+                <div v-else class="profile-menu-item"
+                     :style="{ backgroundImage: `url(https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg)` }"></div>
             </router-link>
         </div>
 
@@ -44,9 +46,8 @@
 
 <script setup>
 import Paths from "../constants/Paths.js";
-import { store } from "../state/index.js";
+import {store} from "../state/index.js";
 import AuthController from "../controllers/AuthController.js";
-
 
 const logout = () => {
     AuthController.Logout()
@@ -54,6 +55,7 @@ const logout = () => {
 </script>
 
 <style scoped lang="scss">
+
 @media screen and (max-width: 600px) {
   .nav {
     display: none;
@@ -142,50 +144,51 @@ const logout = () => {
     }
   }
 
-    .user-section {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
+  .user-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 
-        .profile-menu-item {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            transition: all .3s ease-in-out;
-        }
-
-        .profile-menu-item:hover {
-            transform: scale(1.05);
-        }
-
-        .cart {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-image: url("../../public/cart_icon.svg");
-            cursor: pointer;
-            transition: all .3s ease-in-out;
-
-            .product-notification {
-                position: absolute;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: red;
-            }
-        }
-        .cart:hover {
-            transform: scale(1.05);
-        }
+    .profile-menu-item {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transition: all .3s ease-in-out;
     }
+
+    .profile-menu-item:hover {
+      transform: scale(1.05);
+    }
+
+    .cart {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url("../../public/cart_icon.svg");
+      cursor: pointer;
+      transition: all .3s ease-in-out;
+
+      .product-notification {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: red;
+      }
+    }
+
+    .cart:hover {
+      transform: scale(1.05);
+    }
+  }
 }
 </style>
