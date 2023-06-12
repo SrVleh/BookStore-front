@@ -1,18 +1,17 @@
-
 <template>
-    <Navbar />
+    <Navbar/>
     <router-view></router-view>
-    <Footer />
+    <Footer/>
 </template>
 
 <script setup>
 import Navbar from "./components/Navbar.vue";
 import Footer from "./components/Footer.vue";
-import router from "./routes/router.js";
 import UserDataController from "./controllers/UserDataController.js";
-import RouterController from "./controllers/RouterController.js";
 import OrdersController from "./controllers/OrdersController.js";
-import {store} from "./state/index.js";
+import RouterController from "./controllers/RouterController.js";
+import router from "./routes/router.js";
+import { store } from "./state/index.js";
 
 
 router.beforeResolve((to, from, next) => {
@@ -23,15 +22,15 @@ router.beforeResolve((to, from, next) => {
 
 const checkForOngoingOrder = () => {
     OrdersController.CheckOngoingOrder().then((order) => {
-        order.length !== 0 ? store.commit('isOngoingOrderState', true)  :
-          store.commit('isOngoingOrderState', false)
+        order.length !== 0 ? store.commit('isOngoingOrderState', true) :
+            store.commit('isOngoingOrderState', false)
     })
 }
 </script>
 
 <style scoped lang="scss">
 #app {
-    margin: 0;
+  margin: 0;
 }
 
 .logo {
@@ -40,9 +39,11 @@ const checkForOngoingOrder = () => {
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }

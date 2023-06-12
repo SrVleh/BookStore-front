@@ -17,21 +17,9 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import Paths from "../constants/Paths.js";
 import { store } from "../state/index.js";
-
-export default {
-    name: "Home",
-    computed: {
-        store() {
-            return store
-        },
-        Paths() {
-            return Paths
-        }
-    }
-}
 </script>
 
 <style scoped lang="scss">

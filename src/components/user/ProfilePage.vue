@@ -29,17 +29,16 @@
   import { onMounted, ref } from "vue";
   import OrdersController from "../../controllers/OrdersController.js";
   import Loader from "../shared/Loader.vue";
+  import StateController from "../../controllers/StateController.js";
 
   const orders = ref({})
   const bookCount = ref(0)
 
-  // TODO: Calculate price based on quantity
-
   onMounted(async() => {
-      store.commit('changeLoadingState', true)
+      StateController.ChangeLoadingState(true)
       orders.value = await OrdersController.GetOrderList()
       calculateAllOrderedBooks()
-      store.commit('changeLoadingState', false)
+      StateController.ChangeLoadingState(false)
   })
 
   const deleteOrder = async(id) => {

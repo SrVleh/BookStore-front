@@ -43,7 +43,7 @@ const login = () => {
     gap: .8rem;
 
     .custom-btn {
-        width: 100%;
+      width: 100%;
     }
 
     .pass-forgot {

@@ -19,11 +19,11 @@
 </template>
 
 <script setup>
-import {defineProps, ref, onMounted} from "vue";
+import { defineProps, ref, onMounted } from "vue";
 import BooksController from "../../controllers/BooksController.js";
-import NavigateService from "../../services/NavigateService.js";
 import RawPaths from "../../constants/RawPaths.js";
 import BOOKS_CATEGORIES from "../../services/books/category/BooksCategories.js";
+import RouterController from "../../controllers/RouterController.js";
 
 const book = ref({})
 let updateResponse = null;
@@ -42,16 +42,12 @@ onMounted(async() =>{
 const updateBook = async () => {
     updateResponse = await BooksController.UpdateBook(book.value)
     .then(() => {
-        navigateToBookView()
+        RouterController.NavigateTo(RawPaths.SHOW_BOOK + props.id)
     })
 }
 
 const cancel = () => {
-    navigateToBookView()
-}
-
-const navigateToBookView = () => {
-    NavigateService.Call(RawPaths.SHOW_BOOK + props.id)
+    RouterController.NavigateTo(RawPaths.SHOW_BOOK + props.id)
 }
 </script>
 
