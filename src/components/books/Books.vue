@@ -1,6 +1,11 @@
 <template>
   <div class="page-container">
     <Loader v-if="store.state.isLoading" />
+    <div class="filter-container">
+        <select class="category-selector" v-model="selected_category" @change="categorySelected($event)">
+            <option v-for="category in BOOKS_CATEGORIES">{{ category }}</option>
+        </select>
+    </div>
     <template v-if="books != null && !store.state.isLoading">
       <div class="book-container" v-for="book in books" :key="book.id">
         <router-link :to="'/book/' + book.id">
@@ -30,7 +35,9 @@ import {ref, onMounted} from 'vue';
 import BooksController from "../../controllers/BooksController.js";
 import Loader from "../shared/Loader.vue";
 import {store} from "../../state/index.js";
+import BOOKS_CATEGORIES from "../../services/books/category/BooksCategories.js";
 
+const selected_category = ref("")
 const books = ref([])
 
 onMounted(async() => {
@@ -38,11 +45,26 @@ onMounted(async() => {
     books.value = await BooksController.GetBooksList()
     store.commit('changeLoadingState', false)
 })
+
+const categorySelected = async(event) => {
+    books.value = await BooksController.GetBooksList()
+    if (event.target.value !== BOOKS_CATEGORIES[0]) {
+        books.value = books.value.filter(book => book.category === event.target.value)
+    }
+}
 </script>
 
 <style scoped lang="scss">
 
 .page-container {
+
+  .filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+  }
 
   .empty-content-element {
     display: flex;
