@@ -7,8 +7,8 @@ class UpdateOrderedBookService {
         return this.UpdateBook(ordered_book, quantity)
     }
 
-    static UpdateBook = async(ordered_book, quantity) => {
-        const res = await fetch(API_URL + ordered_book.id, {
+    static UpdateBook = (ordered_book, quantity) => {
+        const promise = fetch(API_URL + ordered_book.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,8 @@ class UpdateOrderedBookService {
                 quantity: quantity
             })
         })
-        return res
+
+        return promise
     }
 }
 

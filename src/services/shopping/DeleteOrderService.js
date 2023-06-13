@@ -9,14 +9,14 @@ class DeleteOrderService {
     }
 
     static deleteOrder = async(id) => {
-        const res = await fetch(API_URL + id, {
+        const promise = await fetch(API_URL + id, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",
                 Authorization: TokenController.GetToken()
             }
         })
-        return res
+        return promise
     }
 }
 

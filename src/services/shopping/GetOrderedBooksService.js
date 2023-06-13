@@ -1,19 +1,21 @@
 import TokenController from "../../controllers/TokenController.js";
 
+const API_URL = "http://localhost:3000/ordered_books"
+
 class GetOrderedBooksService {
     static Call() {
         return this.GetOrderedBooks()
     }
 
     static GetOrderedBooks = async() => {
-        const res = await fetch("http://localhost:3000/ordered_books", {
+        const promise = await fetch(API_URL, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: TokenController.GetToken()
             }
         })
 
-        return res.json()
+        return promise.json()
     }
 }
 

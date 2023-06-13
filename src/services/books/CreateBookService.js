@@ -4,8 +4,8 @@ import Paths from "../../constants/Paths.js";
 const API_URL = "http://localhost:3000/books"
 
 class CreateBookService {
-    static async Call(book) {
-        await fetch(API_URL, {
+    static Call(book) {
+        const promise = fetch(API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -18,7 +18,9 @@ class CreateBookService {
                 image_url: book.image_url,
                 synopsis: book.synopsis
             })
-        }).then(() => {
+        })
+
+        promise.then(() => {
             RouterController.NavigateTo(Paths.BOOKS_LIST)
         })
     }

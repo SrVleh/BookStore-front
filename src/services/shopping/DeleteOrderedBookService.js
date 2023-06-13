@@ -8,14 +8,15 @@ class DeleteOrderedBookService {
     }
 
     static UpdateBook = async(ordered_book) => {
-        const res = await fetch(API_URL + ordered_book.id, {
+        const promise = await fetch(API_URL + ordered_book.id, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: TokenController.GetToken()
             }
         })
-        return res
+
+        return promise
     }
 }
 

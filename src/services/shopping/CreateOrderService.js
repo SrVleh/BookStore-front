@@ -1,21 +1,22 @@
 import TokenController from "../../controllers/TokenController.js";
 
+const API_URL = "http://localhost:3000/orders"
+
 class CreateOrderService {
     static Call() {
-        fetch("http://localhost:3000/orders", {
+        const promise = fetch(API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: TokenController.GetToken()
             }
         })
-        .then((res) => {
+
+        promise.then((res) => {
             if (res.ok) {
                 return res.json()
-            } else {
-                throw new Error(res);
             }
-        })
+        }).catch(err => { console.log(err) })
     }
 }
 

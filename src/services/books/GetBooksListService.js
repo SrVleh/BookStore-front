@@ -8,13 +8,14 @@ class GetBooksListService {
     }
 
     static GetBooksList = async () => {
-        const res = await fetch(API_URL, {
+        const promise = await fetch(API_URL, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: TokenController.GetToken()
             }
         })
-        return res.json()
+        return promise.json()
     }
 }
 
