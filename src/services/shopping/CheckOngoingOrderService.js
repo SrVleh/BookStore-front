@@ -9,13 +9,13 @@ class CheckOngoingOrder {
     }
 
     static GetOngoingOrder = async () => {
-        const res = await fetch(API_URL, {
+        const promise = await fetch(API_URL, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: TokenController.GetToken()
             }
         })
-        return res.json()
+        return promise.json()
     }
 }
 

@@ -1,3 +1,6 @@
+import RouterController from "../../controllers/RouterController.js";
+import RawPaths from "../../constants/RawPaths.js";
+
 const API_URL = "http://localhost:3000/books/"
 
 class GetBooksListService {
@@ -5,8 +8,8 @@ class GetBooksListService {
         return this.UpdateBook(book)
     }
 
-    static UpdateBook = async(book) => {
-        const res = await fetch(API_URL + book.id, {
+    static UpdateBook = (book) => {
+        const promise = fetch(API_URL + book.id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -21,7 +24,9 @@ class GetBooksListService {
                 id: book.id
             })
         })
-        return res
+
+        promise.then(RouterController.NavigateTo(RawPaths.SHOW_BOOK + book.id))
+            .catch(err => { console.log(err) })
     }
 }
 

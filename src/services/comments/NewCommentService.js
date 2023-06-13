@@ -8,7 +8,7 @@ class NewCommentService {
     }
 
     static AddNewComment(comment) {
-        const res = fetch(API_URL, {
+        const promise = fetch(API_URL, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -24,7 +24,7 @@ class NewCommentService {
             })
         })
 
-        return res.json
+        return promise.json
     }
 }
 

@@ -2,9 +2,11 @@ import TokenController from "../../controllers/TokenController.js";
 import RouterController from "../../controllers/RouterController.js";
 import Paths from "../../constants/Paths.js";
 
+const API_URL = "http://localhost:3000/ordered_books"
+
 class AddBooksToOrderService {
     static Call(ongoing_order, book, quantity) {
-        fetch("http://localhost:3000/ordered_books/", {
+        const promise = fetch(API_URL, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -17,7 +19,10 @@ class AddBooksToOrderService {
                     quantity: quantity,
                 }
             })
-        }).then(r => RouterController.NavigateTo(Paths.BOOKS_LIST))
+        })
+
+
+        promise.then(r => RouterController.NavigateTo(Paths.BOOKS_LIST))
     }
 }
 

@@ -41,13 +41,10 @@ onMounted(async() =>{
 
 const updateBook = async () => {
     updateResponse = await BooksController.UpdateBook(book.value)
-    .then(() => {
-        RouterController.NavigateTo(RawPaths.SHOW_BOOK + props.id)
-    })
 }
 
 const cancel = () => {
-    RouterController.NavigateTo(RawPaths.SHOW_BOOK + props.id)
+    RouterController.NavigateTo(RawPaths.SHOW_BOOK + book.value.id)
 }
 </script>
 
