@@ -79,7 +79,7 @@
                   width: 1.6rem;
                   height: 1.6rem;
                   right: 0;
-                  background-image: url("../../../public/edit-icon.svg");
+                  background-image: url("images/edit-icon.svg");
                   background-size: contain;
                   background-repeat: no-repeat;
                   background-position: center;
@@ -139,7 +139,7 @@
                   .delete-btn {
                       width: 1.5rem;
                       height: 1.5rem;
-                      background-image: url("../../../public/delete-icon-green.svg");
+                      background-image: url("images/delete-icon-green.svg");
                       background-size: contain;
                       background-repeat: no-repeat;
                       background-position: center;
@@ -149,7 +149,7 @@
 
                   .delete-btn:hover {
                       transform: scale(1.1);
-                      background-image: url("../../../public/delete-icon.svg");
+                      background-image: url("images/delete-icon.svg");
                   }
 
                   .order-status {

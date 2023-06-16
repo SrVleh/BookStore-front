@@ -4,7 +4,7 @@
         <div class="book-data-container">
             <div class="book purchase" v-if="!store.state.isLoading"
                  :style="{ backgroundImage: `url(${ book.image_url })`}">
-                <img class="book-icon" src="../../../public/book-logo.svg" alt="" style="color: white">
+                <img class="book-icon" src="../../../public/images/book-logo.svg" alt="" style="color: white">
                 <router-link v-if="store.state.userData.isAdmin" :to="'/edit-book/' + book.id"
                              class="edit-btn hov-icon"></router-link>
                 <button v-if="store.state.userData.isAdmin" class="delete-btn hov-icon" @click="BooksController.DeleteBook(book.id)"></button>

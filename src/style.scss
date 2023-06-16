@@ -1,5 +1,37 @@
+@font-face {
+  font-family: 'OpenSans-Light';
+  src: url('../../public/fonts/OpenSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url('../../public/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans-Medium';
+  src: url('../../public/fonts/OpenSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans-SemiBold';
+  src: url('../../public/fonts/OpenSans-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url('../../public/fonts/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OpenSans-ExtraBold';
+  src: url('../../public/fonts/OpenSans-ExtraBold.ttf') format('truetype');
+}
+
+
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: OpenSans-Medium;
   line-height: 1.5;
   font-weight: 400;
 
@@ -12,15 +44,52 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  // *** COLORS *** temp!//
+  --main: #DA0037;
+
+  --text: #EDEDED;
+
+  --background: #171717;
+  --secondary-bkgnd: #444444
 }
 
-a {
+p, h1, a {
+  margin: 0;
+}
+
+button {
+  font-family: OpenSans-Medium;
+}
+
+.gradient-text {
+  background: #AB1CFF;
+  background: linear-gradient(to bottom, #AB1CFF 0%, #1FF0F0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn {
+  font-family: OpenSans-Bold;
+  background-color: #AB1CFF;
+  width: auto;
+  height: 3rem;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: #d7d7d7;
+  padding: 0 2rem;
+  margin-top: 2rem;
+}
+
+button, a {
   text-decoration: none;
   outline: none;
 }
 
 html{
-  background-color: #1a1a1a !important;
+  background-color: var(--background) !important;
 }
 
 body {
@@ -28,6 +97,7 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
+  max-width: 100vw;
   min-height: 100vh;
 }
 
@@ -48,17 +118,7 @@ button {
   transition: border-color 0.25s;
 }
 
-.btn {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
+
 
 .action-btn {
   width: 14rem;
@@ -220,7 +280,7 @@ button {
     @extend .book-icon;
     padding: 0;
     top: 4rem;
-    background-image: url("../public/edit-icon.svg");
+    background-image: url("images/edit-icon.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -230,7 +290,7 @@ button {
     @extend .book-icon;
     padding: 0;
     top: 7rem;
-    background-image: url("../public/delete-icon.svg");
+    background-image: url("images/delete-icon.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -286,7 +346,7 @@ button {
         align-self: center;
         text-align: center;
         transition: all .5s ease-in-out;
-        background-image: url("../public/add_cart_icon.svg");
+        background-image: url("images/add_cart_icon.svg");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -294,7 +354,7 @@ button {
 
       .buy-btn:hover {
         transform: scale(1.03);
-        background-image: url("../public/add_cart_icon_black.svg");
+        background-image: url("images/add_cart_icon_black.svg");
       }
     }
   }
