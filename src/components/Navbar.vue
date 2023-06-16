@@ -2,7 +2,7 @@
     <div class="nav">
         <router-link :to="Paths.HOME">
             <div class="app-logo-container">
-                <img src="../../public/book-logo.svg" alt="">
+                <img src="../../public/images/book-logo.svg" alt="">
                 <h1>BookStore</h1>
             </div>
         </router-link>
@@ -75,6 +75,7 @@ const logout = () => {
   height: 3.2rem;
   background-color: #101010;
   padding: .2rem 4rem;
+  box-sizing: border-box;
 
   .app-logo-container {
     display: flex;
@@ -170,7 +171,7 @@ const logout = () => {
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      background-image: url("../../public/cart_icon.svg");
+      background-image: url("images/cart_icon.svg");
       cursor: pointer;
       transition: all .3s ease-in-out;
 

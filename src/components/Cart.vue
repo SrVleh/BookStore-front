@@ -280,7 +280,7 @@ const completePurchase = () => {
     .sad-icon {
         width: 8rem;
         height: 8rem;
-        background-image: url("../../public/sad-icon.svg");
+        background-image: url("images/sad-icon.svg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;

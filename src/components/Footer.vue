@@ -16,10 +16,11 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 4rem;
+    height: 3.2rem;
     background-color: #101010;
     padding: .2rem 4rem;
     margin-top: auto;
+    box-sizing: border-box;
 
     a {
       color: #ACFCD9;
