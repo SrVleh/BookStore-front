@@ -46,11 +46,12 @@
   -webkit-text-size-adjust: 100%;
 
   // *** COLORS *** temp!//
-  --main: #DA0037;
+  --main: #8B6BFF;
+  --secondary: #cccccc;
 
   --text: #EDEDED;
 
-  --background: #171717;
+  --background: #101010;
   --secondary-bkgnd: #444444
 }
 
@@ -62,25 +63,41 @@ button {
   font-family: OpenSans-Medium;
 }
 
-.gradient-text {
-  background: #AB1CFF;
-  background: linear-gradient(to bottom, #AB1CFF 0%, #1FF0F0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 .btn {
   font-family: OpenSans-Bold;
-  background-color: #AB1CFF;
   width: auto;
   height: 3rem;
+  border: 1px solid var(--main);
+  background-color: transparent;
   border-radius: 8px;
   font-size: 1em;
   cursor: pointer;
-  transition: border-color 0.25s;
-  color: #d7d7d7;
+  color: var(--main);
   padding: 0 2rem;
-  margin-top: 2rem;
+  margin-top: 4rem;
+  transition: .3s all ease-in-out;
+}
+
+.secondary {
+  @extend .btn;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background-color: var(--main);
+  color: var(--text);
+
+}
+
+.secondary:hover {
+  transform: scale(1.05);
+  background-color: var(--secondary);
+  color: var(--main);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 button, a {
@@ -113,7 +130,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: transparent;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -123,8 +140,8 @@ button {
 .action-btn {
   width: 14rem;
   height: 3.7rem;
-  border: 1px solid #ACFCD9;
-  color: #ACFCD9;
+  border: 1px solid var(--main);
+  color: var(--main);
   font-size: 1.2rem;
   font-weight: bolder;
   margin-top: 2rem;
@@ -134,8 +151,8 @@ button {
 
 .action-btn:hover {
   transform: scale(1.1);
-  background-color: #ACFCD9;
-  color: #1a1a1a;
+  background-color: var(--main);
+  color: var(--background);
 }
 
 .card {
@@ -179,11 +196,11 @@ button {
   width: 35%;
   height: 2.5rem;
   padding: .2rem .8rem;
-  background-color: #101010;
-  border: 1px solid rgb(172, 252, 217);
+  background-color: var(--background);
+  border: 1px solid var(--secondary);
   border-radius: 8px;
-  color: #cbcbcb;
-  font-weight: bolder;
+  color: var(--text);
+  font-family: OpenSans-Bold;
   transition: all .5s ease-in-out;
 }
 
@@ -194,7 +211,7 @@ button {
 
 .custom-input:focus-visible {
   transform: scale(1.05);
-  outline: 1px solid rgb(172, 252, 217);
+  outline: 1px solid var(--secondary);
 }
 
 .custom-area {
@@ -203,14 +220,16 @@ button {
 }
 
 .category-selector {
-  @extend .custom-input
+  @extend .custom-input;
+  width: 38%;
+  height: 3rem;
 }
 
 .custom-btn {
   width: 100%;
   height: 2.5rem;
-  border: 1px solid rgb(172, 252, 217);
-  color: #ACFCD9;
+  border: 1px solid var(--main);
+  color: var(--main);
   font-size: 1.2rem;
   font-weight: bolder;
   margin-top: 2rem;
@@ -226,14 +245,14 @@ button {
 
 .custom-btn:hover {
   transform: scale(1.1);
-  background-color: #ACFCD9;
-  color: #1a1a1a;
+  background-color: var(--main);
+  color: var(--text);
 }
 
 .cancel:hover {
   transform: scale(1.1);
   background-color: #EF5B5B;
-  color: #1a1a1a;
+  color: var(--background);
 }
 
 
@@ -241,12 +260,12 @@ button {
 .account-text {
   a {
     font-weight: bolder;
-    color: #ACFCD9;
+    color: var(--secondary);
     cursor: pointer;
     transition: all .5s ease-in-out;
   }
   a:hover {
-    color: #00ab5f;
+    color: var(--main);
   }
 }
 
@@ -330,7 +349,7 @@ button {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
+      width: 95%;
       gap: 1rem;
 
       .price {
@@ -354,7 +373,6 @@ button {
 
       .buy-btn:hover {
         transform: scale(1.03);
-        background-image: url("images/add_cart_icon_black.svg");
       }
     }
   }

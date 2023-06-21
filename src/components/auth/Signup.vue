@@ -36,6 +36,11 @@ const signUp = () => {
   gap: 2rem;
   width: 100%;
 
+    h1 {
+        font-family: OpenSans-Bold;
+        color: var(--secondary)
+    }
+
   .custom-btn {
     width: 35%;
   }

@@ -17,14 +17,14 @@ export default {
     align-items: center;
     width: 100%;
     height: 3.2rem;
-    background-color: #101010;
+    background-color: var(--background);
     padding: .2rem 4rem;
     margin-top: auto;
     box-sizing: border-box;
 
     a {
-      color: #ACFCD9;
-      font-weight: bolder;
+      font-family: OpenSans-Bold;
+      color: var(--main);
     }
   }
 </style>

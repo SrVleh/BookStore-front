@@ -124,7 +124,7 @@
                   justify-content: space-around;
                   width: 60%;
                   height: 4.2rem;
-                  background-color: #101010;
+                  background-color: var(--secondary-bkgnd);
                   border-radius: 3px;
                   padding: 1rem;
                   cursor: pointer;
@@ -133,7 +133,7 @@
                   .order-details {
                       font-size: 1.2rem;
                       font-weight: bolder;
-                      color: #d2d2d2;
+                      color: var(--text);
                   }
 
                   .delete-btn {
@@ -149,7 +149,6 @@
 
                   .delete-btn:hover {
                       transform: scale(1.1);
-                      background-image: url("images/delete-icon.svg");
                   }
 
                   .order-status {
@@ -169,7 +168,7 @@
                   transform: scale(1.03);
 
                   .order-details {
-                      color: #ACFCD9;
+                      color: var(--main);
                   }
               }
           }

@@ -10,7 +10,6 @@
       <div class="book-container" v-for="book in books" :key="book.id">
         <router-link :to="`/book/${book.id}`">
           <div class="book" :style="{ backgroundImage: `url(${ book.image_url })`}">
-            <img class="book-icon" src="../../../public/images/book-logo.svg" alt="" style ="color: white">
             <div class="book-info">
               <h2 class="title">{{ book.title }}</h2>
               <p class="author">{{ book.author }}</p>
@@ -92,7 +91,7 @@ const categorySelected = async(event) => {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
-  border: 1px solid rgba(172, 252, 217, 0.3);
+  border: 1px solid var(--secondary);
   transition: all .3s ease-in-out;
   animation-name: Appear;
   animation-duration: 2s;
@@ -100,7 +99,7 @@ const categorySelected = async(event) => {
 
 .book-container:hover {
   transform: scale(1.02);
-  filter: drop-shadow(0 0 .2em #ACFCD9);
+  filter: drop-shadow(0 0 .2em var(--main));
   cursor: pointer;
 }
 

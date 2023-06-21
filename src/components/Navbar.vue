@@ -95,7 +95,7 @@ const logout = () => {
     }
 
     h1 {
-      color: #ACFCD9;
+      color: var(--main);
       font-size: 1.4rem;
       margin: 0;
       padding: 0;
@@ -122,13 +122,13 @@ const logout = () => {
       border-radius: 12px;
 
       a {
-        color: white;
+        color: var(--text);
         font-weight: normal;
         font-size: 1.2rem;
       }
 
       button {
-        color: white;
+        color: var(--text);
         font-weight: normal;
         font-size: 1.2rem;
       }
@@ -136,7 +136,7 @@ const logout = () => {
 
     li:hover {
       a {
-        color: #ACFCD9;
+        color: var(--main);
       }
 
       button {

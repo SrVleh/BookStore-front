@@ -36,6 +36,11 @@ const login = () => {
   gap: 2rem;
   width: 100%;
 
+    h1 {
+        font-family: OpenSans-Bold;
+        color: var(--secondary)
+    }
+
   .actions-container {
     display: flex;
     flex-direction: column;
@@ -52,9 +57,13 @@ const login = () => {
 
       .pass-forgot-link {
         font-weight: bolder;
-        color: #747bff;
+        color: var(--secondary);
         cursor: pointer;
       }
+
+        .pass-forgot-link:hover {
+            color: var(--main);
+        }
     }
   }
 }
