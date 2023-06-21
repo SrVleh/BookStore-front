@@ -42,6 +42,11 @@ const createBook = async() => {
   gap: 2rem;
   width: 100%;
 
+    h1 {
+        font-family: OpenSans-Bold;
+        color: var(--secondary);
+    }
+
   .actions-container {
     display: flex;
     justify-content: space-between;

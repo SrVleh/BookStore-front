@@ -41,7 +41,6 @@
 
 <script setup>
 
-// TODO: Research about optimisation
 
 import OrdersController from "../controllers/OrdersController.js";
 import Paths from "../constants/Paths.js";
@@ -150,7 +149,7 @@ const completePurchase = () => {
     height: 100%;
     gap: 1rem;
     background-color: #101010;
-    border: 1px solid #ACFCD9;
+    border: 1px solid var(--secondary);
     border-radius: 12px;
     padding: 2rem;
 
@@ -162,7 +161,6 @@ const completePurchase = () => {
         width: 100%;
         min-height: 5rem;
         height: auto;
-        //border: 1px solid #ACFCD9;
         border-radius: 8px;
         padding: 1rem;
 
@@ -170,6 +168,8 @@ const completePurchase = () => {
             font-weight: bolder;
             font-size: 2rem;
             margin-bottom: 3rem;
+            color: var(--text);
+            font-family: OpenSans-Bold;
         }
 
         .ordered-items-data {
@@ -186,7 +186,7 @@ const completePurchase = () => {
                 width: 100%;
 
                 .column-title {
-                    color: #ACFCD9;
+                    color: var(--main);
                     font-weight: bolder;
                 }
 
@@ -211,18 +211,18 @@ const completePurchase = () => {
                         align-content: center;
                         width: 1.8rem;
                         height: 1.8rem;
-                        border: 1px solid #ACFCD9;
+                        border: 1px solid var(--main);
                         border-radius: 8px;
                         font-size: 1rem;
                         padding: 0;
-                        color: #ACFCD9;
+                        color: var(--main);
                         font-weight: bolder;
                         transition: all .2s ease-in-out;
                     }
                     .rest-btn:hover {
                         color: #1a1a1a;
                         transform: scale(1.05);
-                        background-color: #ACFCD9;
+                        background-color: var(--main);
                     }
 
                     .sum-btn {
@@ -255,13 +255,17 @@ const completePurchase = () => {
                     width: calc(100% / 3);
 
                     .total-price-title {
-                        color: #ACFCD9;
+                        color: var(--main);
                         font-weight: bolder;
                     }
                 }
             }
         }
     }
+}
+
+.action-btn {
+    height: 2rem;
 }
 
 .no-order-container {

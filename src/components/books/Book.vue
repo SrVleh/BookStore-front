@@ -191,7 +191,7 @@ const purchase = async () => {
             flex-direction: column;
             width: 100%;
             min-height: 10rem;
-            background-color: #101010;
+            border: 1px solid var(--secondary);
             border-radius: 8px;
             padding: 1rem;
             gap: 1rem;

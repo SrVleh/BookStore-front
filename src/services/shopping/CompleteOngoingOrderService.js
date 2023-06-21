@@ -1,7 +1,7 @@
 import TokenController from "../../controllers/TokenController.js";
 import { store } from "../../state/index.js";
 
-const API_URL = "http://localhost:3000/orders"
+const API_URL = "http://localhost:3000/orders/"
 
 class CompleteOngoingOrderService {
     static Call(order) {
